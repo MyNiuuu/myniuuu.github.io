@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>MOFA-Video</title>
+    <link rel="icon" type="image/png" href="assets/unicorn.png">
+    <meta content="MOFA-Video: Controllable Image Animation via Generative Motion Field Adaptions in Frozen Image-to-Video Diffusion Model" name="description" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="static/css/template.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/my_style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+            google: {
+                families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic", "Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic", "Changa One:400,400italic", "Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic", "Varela Round:400", "Bungee Shade:regular", "Roboto:300,regular,500"]
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        ! function (o, c) {
+            var n = c.documentElement,
+                t = " w-mod-";
+            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
+        }(window, document);
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <script type="text/javascript" src="static/js/zoom.js"></script>
+    <script type="text/javascript" src="static/js/video_comparison.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLDP9MKGC8"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MLDP9MKGC8');
+    </script>
+</head>
+
+<body>
+    <div class="section hero nerf-_v2">
+        <div class="container-2 nerf_header_v2 w-container">
+            <h1 class="nerf_title_v2 custom_title">MOFA-Video: Controllable Image Animation via Generative <u><strong>Mo</strong></u>tion <u><strong>F</strong></u>ield <u><strong>A</strong></u>daptions in Frozen Image-to-Video Diffusion Model</h1>
+            <!-- <div class="nerf_subheader_v2">ICLR 2024</div> -->
+            <div class="nerf_subheader_v2">
+                <div>
+                    <a href="https://myniuuu.github.io/" target="_blank" class="nerf_authors_v2">Muyao Niu<span
+                            class="text-span_nerf"></span></a><sup> 1,2</sup>,&nbsp;&nbsp;
+                    <a href="https://vinthony.github.io/academic/" target="_blank" class="nerf_authors_v2">Xiaodong Cun<span
+                            class="text-span_nerf"></span></a><sup> 2,*</sup>,&nbsp;&nbsp;
+                    <a href="https://xinntao.github.io/" target="_blank" class="nerf_authors_v2">Xintao Wang<span
+                            class="text-span_nerf"></span></a><sup> 2</sup>,&nbsp;&nbsp;
+                    <a href="https://yzhang2016.github.io/" target="_blank" class="nerf_authors_v2">Yong Zhang<span
+                        class="text-span_nerf"></span></a><sup> 2</sup>,&nbsp;&nbsp;
+                    <a href="https://scholar.google.com/citations?user=4oXBp9UAAAAJ&hl=en" target="_blank" class="nerf_authors_v2">Ying Shan<span
+                        class="text-span_nerf"></span></a><sup> 2</sup>,&nbsp;&nbsp;
+                    <a href="https://scholar.google.com/citations?user=JD-5DKcAAAAJ&hl=en" target="_blank" class="nerf_authors_v2">Yinqiang Zheng<span
+                        class="text-span_nerf"></span></a><sup> 1,*</sup>
+                </div>
+                <div>
+                    <h1 class="nerf_affiliation_v2"><sup>1 </sup>The University of Tokyo</h1>,
+                    <h1 class="nerf_affiliation_v2"><sup>2 </sup>Tencent AI Lab</h1>,
+                    <h1 class="nerf_affiliation_v2"><sup>* </sup>Corresponding Author</h1>
+                </div>
+                    
+
+                <div class="external-link">
+                    <a class="btn" href="" role="button" target="_blank">
+                        <i class="ai ai-arxiv"></i> Arxiv </a>
+                    <!-- <a class="btn" href="paper/Paper_high_res.pdf" role="button" target="_blank">
+                        <i class="fa fa-file-pdf"></i> Paper </a> -->
+                    <a class="btn" href="https://github.com/MyNiuuu/MOFA-Video" role="button" target="_blank" disabled>
+                        <i class="fa-brands fa-github"></i> Code </a>
+                    <!-- <a class="btn btn-large btn-light" href="https://youtu.be/0FazXENkQms" role="button" target="_blank" disabled>
+                        <i class="fa-brands fa-youtube"></i> Video </a> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="w-container grey_container">
+        <div style="height: 30px;"></div>
+        <p class="simple_text_teaser">MOFA-Video animates a single image using various types of control signals, including <span style="color:rgba(101, 218, 121);">trajectories</span>, <span style="color:rgb(245, 194, 66);">keypoint sequences</span>, AND their combinations.</p>
+        <div style="height: 20px;"></div>
+
+        <div class="span_captions">
+            <p class="caption" style="margin-top: 5px; margin-bottom: 5px;">Image & Control</p>
+            <p class="caption" style="margin-top: 5px; margin-bottom: 5px;">Output</p>
+        </div>
+        
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/teaser/1716968438_audio1/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/teaser/1716968438_audio1/output.mp4"></video>
+            </div>
+        </div>
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/teaser/1716961909/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/teaser/1716961909/output.mp4"></video>
+            </div>
+        </div>
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/teaser/1717003480/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/teaser/1717003480/output.mp4"></video>
+            </div>
+        </div>
+        
+        <div style="height: 10px;"></div>
+    </div>
+
+
+    <div data-anchor="slide1" class="section nerf_section">
+        <div class="w-container grey_container">
+            <h2 class="grey-heading_nerf" style="text-align: center;">Overview</h2>
+            <div style="height: 10px;"></div>
+            <img src="assets/figures/project-mofa.png" style="width:90%; margin: auto; display: block;">
+            <div style="height: 10px;"></div>
+            <p class="simple_text">We introduce MOFA-Video, a method designed to adapt motions from different domains to the frozen Video Diffusion Model. By employing <u>sparse-to-dense (S2D) motion generation</u> and <u>flow-based motion adaptation</u>, MOFA-Video can effectively animate a single image using various types of control signals, including trajectories, keypoint sequences, AND their combinations.</p>
+            <div style="height: 20px;"></div>
+            <img src="assets/figures/pipeline.png" style="width:90%; margin: auto; display: block;">
+            <div style="height: 10px;"></div>
+            <p class="simple_text">During the training stage, we generate sparse control signals through sparse motion sampling and then train different MOFA-Adapters to generate video via pre-trained SVD. During the inference stage, different MOFA-Adapters can be combined to jointly control the frozen SVD.</p>
+            <div style="height: 20px;"></div>
+        </div>
+    </div>
+
+
+    <div class="w-container grey_container">
+        <h2 class="grey-heading_nerf" style="text-align: center;">Trajectory-based Image Animation</h2>
+        <div class="span_captions">
+            <p class="caption" style="margin-top: -15px; margin-bottom: 0px;">Image</p>
+            <p class="caption" style="margin-top: -15px; margin-bottom: 0px;">Trajectories</p>
+            <p class="caption" style="margin-top: -15px; margin-bottom: 0px;">Flow</p>
+            <p class="caption" style="margin-top: -15px; margin-bottom: 0px;">Output</p>
+        </div>
+        
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716130312/input.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716130312/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716130312/flow.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716130312/output.mp4"></video>
+            </div>
+        </div>
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716117818/input.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716117818/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716117818/flow.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716117818/output.mp4"></video>
+            </div>
+        </div>
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716106590/input.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716106590/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716106590/flow.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716106590/output.mp4"></video>
+            </div>
+        </div>
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716186171/input.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716186171/hint.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716186171/flow.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/drag/1716186171/output.mp4"></video>
+            </div>
+        </div>
+        
+
+
+
+        <div style="height: 10px;"></div>
+        <div class="grid-container-1">
+            <a class="mybtn" href="dmtet-based-gallery_0.html" role="button"> Click Here to See More Results! 😈😈😈 </a>
+        </div>
+        <div style="height: 10px;"></div>
+    </div>
+
+
+    <div class="w-container grey_container">
+        <h2 class="grey-heading_nerf" style="text-align: center;">Keypoint-based Facial Image Animation</h2>
+        <div style="height: -20px;"></div>
+
+
+        <h2 class="grey-heading_nerf_small"><u>1. Keypoints from driven-video (click to play)</u></h2>
+        <div style="height: 20px;"></div>
+        <div class="grid-container-1">
+            <div>
+                <div class="video_row">
+                    <div class="video-container">
+                        <video class="myvideo" playsinline src="assets/talking/Video/000029.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                    </div>
+                    <div class="video-container">
+                        <video class="myvideo" playsinline src="assets/talking/Video/000042.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                    </div>
+                </div>
+                <div class="video_row">
+                    <div class="video-container">
+                        <video class="myvideo" playsinline src="assets/talking/Video/000009.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                    </div>
+                    <div class="video-container">
+                        <video class="myvideo" playsinline src="assets/talking/Video/000018.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="grey-heading_nerf_small"><u>2. Keypoints from driven-audio (click to play)</u></h2>
+        <div style="height: 20px;"></div>
+        <div class="grid-container-1">
+            <div class="video_row">
+                <div class="video-container">
+                    <video class="myvideo" playsinline src="assets/talking/HTDF/000016.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" playsinline src="assets/talking/HTDF/000002.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                </div>
+            </div>
+            <div class="video_row">
+                <div class="video-container">
+                    <video class="myvideo" playsinline src="assets/talking/HTDF/000025.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" playsinline src="assets/talking/HTDF/000034.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                </div>
+            </div>
+        </div>
+        <div style="height: 10px;"></div>
+        <div class="grid-container-1">
+            <a class="mybtn" href="dmtet-based-gallery_1.html" role="button"> Click Here to See More Results! 😈😈😈 </a>
+        </div>
+        <div style="height: 10px;"></div>
+    </div>
+
+    <div class="w-container grey_container">
+        <h2 class="grey-heading_nerf" style="text-align: center;">Zero-Shot Functionalities</h2>
+        <h2 class="grey-heading_nerf_small"><u>1. Hybrid Control </u></h2>
+        <div class="grid-container-1">
+            <div class="span_captions">
+                <p class="caption" style="font-size: 16px; margin-top: 10px; margin-bottom: 0px;">Image & Controls</p>
+                <p class="caption" style="font-size: 16px; margin-top: 10px; margin-bottom: 0px;">Landmarks</p>
+                <p class="caption" style="font-size: 16px; margin-top: 10px; margin-bottom: 0px;">Output</p>
+            </div>
+
+
+            <div class="video_row">
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1716968438_audio1/input.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1716968438_audio1/landmark.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1716968438_audio1/output.mp4"></video>
+                </div>
+            </div>
+
+            <div class="video_row">
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1716961909/input.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1716961909/landmark.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1716961909/output.mp4"></video>
+                </div>
+            </div>
+
+            <div class="video_row">
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1717003480/input.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1717003480/landmark.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/1717003480/output.mp4"></video>
+                </div>
+            </div>
+
+            <div class="video_row">
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/000006/input.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/000006/landmark.mp4"></video>
+                </div>
+                <div class="video_container_hybrid">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/hybrid/000006/output.mp4"></video>
+                </div>
+            </div>
+            
+        </div>
+        <div style="height: 10px;"></div>
+        <h2 class="grey-heading_nerf_small"><u>2. Motion Brush</u></h2>
+
+        <div style="height: 20px;"></div>
+        <div class="grid-container-1">
+            <div class="span_captions">
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Image</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Trajectories & Brush</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Flow</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Output</p>
+            </div>
+            <div class="video_row">
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000001/input.mp4"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000001/hint.mp4"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000001/flow.mp4"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000001/output.mp4"></video>
+                </div>
+            </div>
+            <div class="video_row">
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000002/input.mp4"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000002/hint.mp4"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000002/flow.mp4"></video>
+                </div>
+                <div class="video-container">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000002/output.mp4"></video>
+                </div>
+            </div>
+
+        </div>
+        <div style="height: 10px;"></div>
+        <h2 class="grey-heading_nerf_small"><u>3. Direct Control via Optical Flow</u></h2>
+
+        <div class="grid-container-1">
+            <div class="span_captions">
+                <p class="caption" style="margin-top: 10px; margin-bottom: 0px;">Image</p>
+                <p class="caption" style="margin-top: 10px; margin-bottom: 0px;">Flow</p>
+                <p class="caption" style="margin-top: 10px; margin-bottom: 0px;">Output</p>
+                <p class="caption" style="margin-top: 10px; margin-bottom: 0px;">Flow</p>
+                <p class="caption" style="margin-top: 10px; margin-bottom: 0px;">Output</p>
+            </div>
+            <div class="video_row">
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/panleft/input.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/panleft/flow.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/panleft/output.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/panright/flow.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/panright/output.mp4"></video>
+                </div>
+            </div>
+            <div class="video_row">
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/zoomin/input.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/zoomin/flow.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/zoomin/output.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/zoomout/flow.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/zoomout/output.mp4"></video>
+                </div>
+            </div>
+            <div class="video_row">
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/clockwise/input.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/clockwise/flow.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/clockwise/output.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/counterclockwise/flow.mp4"></video>
+                </div>
+                <div class="video_container_directflow">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/direct_flow/counterclockwise/output.mp4"></video>
+                </div>
+            </div>
+        </div>
+        <div style="height: 10px;"></div>
+    </div>
+
+
+    <div class="w-container grey_container">
+        <h2 class="grey-heading_nerf" style="text-align: center;">Ablation Studies</h2>
+        <h2 class="grey-heading_nerf_small"><u>1. Architecture of MOFA-Adapter </u></h2>
+
+        <div class="grid-container-1">
+            <div class="span_captions">
+                <p class="caption" style="margin-top: 5px; margin-bottom: 0px;">Image</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: 0px;">Trajectories</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: 0px;">w/o warping</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: 0px;">w/o tuning</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: 0px;">w/o S2D</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: 0px;">Ours</p>
+            </div>
+            <div class="video_row">
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716130312/input.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716130312/hint.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716130312/nowarp.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716130312/notune.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716130312/nos2d.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716130312/ours.mp4"></video>
+                </div>
+            </div>
+
+            <div class="video_row">
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716109004/input.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716109004/hint.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716109004/nowarp.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716109004/notune.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716109004/nos2d.mp4"></video>
+                </div>
+                <div class="video_container_2">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ablation/1716109004/ours.mp4"></video>
+                </div>
+            </div>
+        </div>
+        <div style="height: 10px;"></div>
+        <h2 class="grey-heading_nerf_small"><u>2. Domain-specific Tuning (click to play) </u></h2>
+
+        <div class="grid-container-1">
+            <div class="span_captions">
+                <p class="caption" style="margin-top: 5px; margin-bottom: -5px;">Image</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: -5px;">Flow</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: -5px;">Landmarks</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: -5px;">Output w/ Tuning</p>
+                <p class="caption" style="margin-top: 5px; margin-bottom: -5px;">Output w/o Tuning</p>
+            </div>
+            <div>
+                <video class="video" playsinline src="assets/talking_ablation/000001.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+                <video class="video" playsinline src="assets/talking_ablation/000002.mp4" onclick="this.paused ? this.play() : this.pause();"></video>
+            </div>
+        </div>
+        <div style="height: 10px;"></div>
+    </div>
+
+
+<!-- <div class="white_section_nerf grey_container w-container">
+<h2 class="grey-heading_nerf">BibTeX</h2>
+<div class="bibtex">
+    <pre><code>@article{sun2023dreamcraft3d,
+  title={Dreamcraft3d: Hierarchical 3d generation with bootstrapped diffusion prior},
+  author={Sun, Jingxiang and Zhang, Bo and Shao, Ruizhi and Wang, Lizhen and Liu, Wen and Xie, Zhenda and Liu, Yebin},
+  journal={arXiv preprint arXiv:2310.16818},
+  year={2023}
+}</code></pre>
+</div>
+</div> -->
+
+
+
+</body>
+<footer>
+    This project page is inspired by <a href="https://mrtornado24.github.io/DreamCraft3D/">DreamCraft3D</a>, <a href="https://sweetdreamer3d.github.io/">SweetDreamer</a>, and <a href="https://nerfies.github.io/">Nerfies</a>
+</footer>
+
+</html>
