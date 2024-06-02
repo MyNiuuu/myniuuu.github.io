@@ -380,10 +380,44 @@
                     <video class="myvideo" loop playsinline autoPlay muted src="assets/motion_brush/000002/output.mp4"></video>
                 </div>
             </div>
-
         </div>
         <div style="height: 10px;"></div>
-        <h2 class="grey-heading_nerf_small"><u>3. Direct Control via Optical Flow</u></h2>
+        <h2 class="grey-heading_nerf_small"><u>3. Control Scale</u></h2>
+        <div style="height: 20px;"></div>
+        <div class="grid-container-1">
+            <div class="span_captions">
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Image & Trajectories</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Flow</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Scale=0 (Pure SVD)</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Scale=0.3</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Scale=0.6 (Default)</p>
+                <p class="caption" style="margin-top: -15px; margin-bottom: 5px;">Scale=1</p>
+            </div>
+            <div class="video_row">
+                <div class="video_container_ctrl_scale">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ctrl_scale/000000/s0/hint.mp4"></video>
+                </div>
+                <div class="video_container_ctrl_scale">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ctrl_scale/000000/s0/flow.mp4"></video>
+                </div>
+                <div class="video_container_ctrl_scale">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ctrl_scale/000000/s0/output.mp4"></video>
+                </div>
+                <div class="video_container_ctrl_scale">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ctrl_scale/000000/s0.3/output.mp4"></video>
+                </div>
+                <div class="video_container_ctrl_scale">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ctrl_scale/000000/s0.6/output.mp4"></video>
+                </div>
+                <div class="video_container_ctrl_scale">
+                    <video class="myvideo" loop playsinline autoPlay muted src="assets/ctrl_scale/000000/s1/output.mp4"></video>
+                </div>
+            </div>
+        </div>
+        <div style="height: 10px;"></div>
+
+
+        <h2 class="grey-heading_nerf_small"><u>4. Direct Control via Optical Flow</u></h2>
 
         <div class="grid-container-1">
             <div class="span_captions">
@@ -524,17 +558,17 @@
     </div>
 
 
-<!-- <div class="white_section_nerf grey_container w-container">
+<div class="white_section_nerf grey_container w-container">
 <h2 class="grey-heading_nerf">BibTeX</h2>
 <div class="bibtex">
-    <pre><code>@article{sun2023dreamcraft3d,
-  title={Dreamcraft3d: Hierarchical 3d generation with bootstrapped diffusion prior},
-  author={Sun, Jingxiang and Zhang, Bo and Shao, Ruizhi and Wang, Lizhen and Liu, Wen and Xie, Zhenda and Liu, Yebin},
-  journal={arXiv preprint arXiv:2310.16818},
-  year={2023}
+    <pre><code>@article{niu2024mofa,
+        title={MOFA-Video: Controllable Image Animation via Generative Motion Field Adaptions in Frozen Image-to-Video Diffusion Model},
+        author={Niu, Muyao and Cun, Xiaodong and Wang, Xintao and Zhang, Yong and Shan, Ying and Zheng, Yinqiang},
+        journal={arXiv preprint arXiv:2405.20222},
+        year={2024}
+      }
 }</code></pre>
 </div>
-</div> -->
 
 
 
