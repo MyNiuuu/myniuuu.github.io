@@ -23,12 +23,11 @@
                   Muyao Niu (牛慕尧)
                 </p>
                 <p>Hi, I'm Muyao Niu.
-                  I am a 1st year Ph.D. student in the Department of Mechano-Informatics, the University of Tokyo (UTokyo). My supervisor is Prof. <a href="https://www.ai.u-tokyo.ac.jp/ja/members/yqzheng">Yinqiang Zheng</a> . I received my B.E. degree from Dalian University of Technology in 2022. My research interests include AIGC, Computational Photography, and 3D Vision.
+                  I am a 1st year Ph.D. student in the Department of Mechano-Informatics, the University of Tokyo (UTokyo). My supervisor is Prof. <a href="https://www.ai.u-tokyo.ac.jp/ja/members/yqzheng">Yinqiang Zheng</a> . I received my B.E. degree from Dalian University of Technology in 2022. My research interests include Computational Photography, AIGC, and 3D Vision.
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:muyao.niu@gmail.com">Email</a> &nbsp;/&nbsp;
                   <a href="https://github.com/MyNiuuu">Github</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.com/citations?user=CHK1G40AAAAJ">Google Scholar</a> &nbsp;/&nbsp;
                   WeChat: MyNiuuu
                 </p>
               </td>
@@ -43,11 +42,41 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Selected 5 Papers</h2>
+                <h2>Research</h2>
               </td>
             </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/StereoCrafter.png' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                StereoCrafter: Diffusion-based Generation of Long and High-fidelity Stereoscopic 3D from Monocular Videos
+                <br>
+                <em>
+                  Sijie Zhao*,
+                  Wenbo Hu*,
+                  Xiaodong Cun*,
+                  Yong Zhang<sup>#</sup>,
+                  Xiaoyu Li<sup>#</sup>,
+                  Zhe Kong,
+                  Xiangjun Gao,
+                  <strong>Muyao Niu</strong>,
+                  Ying Shan
+                </em>
+                <br>
+                  <em>arXiv (Technical Report)</em>, 2024
+                <br>
+                <a href="https://stereocrafter.github.io/">project</a> / 
+                <a href="https://arxiv.org/abs/2409.07447">paper</a>
+                <br>
+                We present a novel framework for converting 2D videos to immersive stereoscopic 3D, addressing the growing demand for 3D content in immersive experience. Leveraging foundation models as priors, our approach boosts the performance to ensure the high-fidelity generation required by the display devices.
+              </td>
+            </tr>	
+
+
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
@@ -67,34 +96,40 @@
                 <br>
                   <em>ECCV</em>, 2024
                 <br>
-                <a href="https://myniuuu.github.io/MOFA_Video/">project page</a> / 
+                <a href="https://myniuuu.github.io/MOFA_Video/">project</a> / 
                 <a href="https://arxiv.org/abs/2405.20222">paper</a> / 
                 <a href="https://github.com/MyNiuuu/MOFA-Video">code</a>
                 <br>
                 We introduce MOFA-Video to adapt motions from different domains to the frozen Video Diffusion Model. MOFA-Video can effectively animate a single image using various types of control signals, including trajectories, keypoint sequences, and their combinations.
               </td>
-            </tr>
+            </tr>	
+
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/cvpr2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/CVVAE.png' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Visibility Constrained Wide-band Illumination Spectrum Design for Seeing-in-the-Dark
+                CV-VAE: A Compatible Video VAE for Latent Generative Video Models
                 <br>
                 <em>
+                  Sijie Zhao,
+                  Yong Zhang, 
+                  Xiaodong Cun, 
+                  Shaoshu Yang, 
                   <strong>Muyao Niu</strong>,
-                  Zhuoxiao Li,
-                  Zhihang Zhong,
-                  Yinqiang Zheng
+                  Xiaoyu Li, 
+                  Wenbo Hu, 
+                  Ying Shan
                 </em>
                 <br>
-                  <em>CVPR</em>, 2023
+                  <em>NeurIPS</em>, 2024
                 <br>
-                <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Niu_Visibility_Constrained_Wide-Band_Illumination_Spectrum_Design_for_Seeing-in-the-Dark_CVPR_2023_paper.pdf">paper</a> / 
-                <a href="https://github.com/MyNiuuu/VCSD">code</a>
+                <a href="https://ailab-cvc.github.io/cvvae/index.html">project</a> / 
+                <a href="https://arxiv.org/abs/2405.20279">paper</a> / 
+                <a href="https://github.com/AILab-CVC/CV-VAE">code</a>
                 <br>
-                We designed an optimal illumination spectrum in the VIS-NIR range by considering human vision constraints, which significantly improves translation performance. A fully differentiable model was proposed, which includes the imaging process, human visual perception, and the enhancement network.
+                We propose CV-VAE that is compatible with existing image and video models trained with SD image VAE. Our video VAE provides a truly spatio-temporally compressed latent space for latent generative video models, as opposed to uniform frame sampling. 
               </td>
             </tr>
 
@@ -123,6 +158,33 @@
                 We improve NeRF to consider the RS distortions with two technologies: camera trajectory smoothness regularization and multi-sampling strategy.
               </td>
             </tr>
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/KFDNeRF.png' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                KFD-NeRF: Rethinking Dynamic NeRF with Kalman Filter
+                <br>
+                <em>
+                  Yifan Zhan, 
+                  Zhuoxiao Li,
+                  <strong>Muyao Niu</strong>,
+                  Zhihang Zhong, 
+                  Shohei Nobuhara, 
+                  Ko Nishino, 
+                  Yinqiang Zheng
+                </em>
+                <br>
+                  <em>ECCV</em>, 2024
+                <br>
+                <a href="https://arxiv.org/abs/2407.13185">paper</a> / 
+                <a href="https://github.com/Yifever20002/KFD-NeRF">code</a>
+                <br>
+                We combine dynamic neural radiance field with a motion reconstruction framework based on Kalman filtering, enabling accurate deformation estimation from scene observations and predictions.
+              </td>
+            </tr>	
+
             
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
@@ -151,6 +213,51 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/iccv2023.png' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                NIR-assisted Video Enhancement via Unpaired 24-hour Data
+                <br>
+                <em>
+                  <strong>Muyao Niu</strong>,
+                  Zhihang Zhong,
+                  Yinqiang Zheng
+                </em>
+                <br>
+                  <em>ICCV</em>, 2023
+                <br>
+                <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Niu_NIR-assisted_Video_Enhancement_via_Unpaired_24-hour_Data_ICCV_2023_paper.pdf">paper</a> / 
+                <a href="https://github.com/MyNiuuu/NVEU">code</a>
+                <br>
+                We addressed the issue of collecting data for utilizing NIR images to improve low-light VIS videos. Physiscs-inspired algorithms are designed to simulate pseudo paired data of NIR and VIS images, simulating day-to-night situations. We then trained an enhancement network using the generated pseudo data.
+              </td>
+            </tr>		
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/cvpr2023.png' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                Visibility Constrained Wide-band Illumination Spectrum Design for Seeing-in-the-Dark
+                <br>
+                <em>
+                  <strong>Muyao Niu</strong>,
+                  Zhuoxiao Li,
+                  Zhihang Zhong,
+                  Yinqiang Zheng
+                </em>
+                <br>
+                  <em>CVPR</em>, 2023
+                <br>
+                <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Niu_Visibility_Constrained_Wide-Band_Illumination_Spectrum_Design_for_Seeing-in-the-Dark_CVPR_2023_paper.pdf">paper</a> / 
+                <a href="https://github.com/MyNiuuu/VCSD">code</a>
+                <br>
+                We designed an optimal illumination spectrum in the VIS-NIR range by considering human vision constraints, which significantly improves translation performance. A fully differentiable model was proposed, which includes the imaging process, human visual perception, and the enhancement network.
+              </td>
+            </tr>		
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
                 <img src='images/TIP2023.png' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
@@ -170,18 +277,9 @@
                 <br>
                 <a href="https://dl.acm.org/doi/abs/10.1109/TIP.2023.3326682">paper</a>
                 <br>
-                We proposed the Region-Assisted Sketch Colorization (RASC) method, which uses a 'Region Map' to better utilize regional information within the sketch, enhancing the perception of region-wise features.
+                we proposed the Region-Assisted Sketch Colorization (RASC) method, which uses a 'Region Map' to better utilize regional information within the sketch, enhancing the perception of region-wise features.
               </td>
-            </tr>
-
-
-            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-                <td style="padding:20px;width:100%;vertical-align:middle">
-                  <h2><a href="./index_full.html" style="font-size: 20px;">Full List</a></h2>
-                </td>
-              </tr>
-            </tbody></table>
+            </tr>		
 
 
             <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -204,8 +302,7 @@
             <td style="padding:20px;width:100%;vertical-align:middle">
               <h2>Awards/Scholarships</h2>
               <p>
-                BOOST NAIS Special Research Scholarship (3,900,000 JPY / year), The University of Tokyo, <em>2024.10 - 2027.09</em> <br>
-                WING-CFS Special Research Assistant Scholarship (2,160,000 JPY / year), The University of Tokyo, <em>2023.04 - 2024.09</em> <br>
+                WING-CFS Special Research Assistant Scholarship, The University of Tokyo, <em>2023.04 - 2027.09</em> <br>
                 Teijin Scholarship, <em>2023.04 - 2024.09</em> <br>
                 JASSO Scholarship, <em>2022.10 - 2023.04</em> <br>
                 National Scholarship of China (Undergraduate Students), <em>2019.09 - 2021.08</em> <br>
