@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>AniCrafter</title>
+    <link rel="icon" type="image/png" href="assets/film.png">
+    <meta content="AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models" name="description" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="static/css/template.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/my_style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+            google: {
+                families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic", "Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic", "Changa One:400,400italic", "Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic", "Varela Round:400", "Bungee Shade:regular", "Roboto:300,regular,500"]
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        ! function (o, c) {
+            var n = c.documentElement,
+                t = " w-mod-";
+            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
+        }(window, document);
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <script type="text/javascript" src="static/js/zoom.js"></script>
+    <script type="text/javascript" src="static/js/video_comparison.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLDP9MKGC8"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MLDP9MKGC8');
+    </script>
+</head>
+
+<body>
+    <div class="section hero nerf-_v2">
+        <div class="container-2 nerf_header_v2 w-container">
+            <h1 class="nerf_title_v2 custom_title">AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models</h1>
+            <!-- <div class="nerf_subheader_v2">ICLR 2024</div> -->
+            <div class="nerf_subheader_v2">
+                <div>
+                    <a href="https://myniuuu.github.io/" target="_blank" class="nerf_authors_v2">Muyao Niu<span
+                            class="text-span_nerf"></span></a><sup>1,2</sup>,&nbsp;&nbsp;
+                    <a href="https://github.com/ljzycmd" target="_blank" class="nerf_authors_v2">Mingdeng Cao<span
+                            class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
+                    <a href="https://yifever20002.github.io/yifanzhan.github.io/" target="_blank" class="nerf_authors_v2">Yifan Zhan<span
+                            class="text-span_nerf"></span></a><sup>1,2</sup>,&nbsp;&nbsp;
+                    <a href="https://qtzhu.me/" target="_blank" class="nerf_authors_v2">Qingtian Zhu<span
+                        class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
+                    <a href="https://github.com/mm2319" target="_blank" class="nerf_authors_v2">Mingze Ma<span
+                        class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
+                    <a href="https://github.com/zhaojiancheng007" target="_blank" class="nerf_authors_v2">Jiancheng Zhao<span
+                        class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
+                    </div>
+                    <div style="height: 5px;"></div>
+                    <div>   
+                    <a href="https://zengyh1900.github.io/" target="_blank" class="nerf_authors_v2">Yanhong Zeng<span
+                        class="text-span_nerf"></span></a><sup>2</sup>,&nbsp;&nbsp;
+                    <a href="https://zzh-tech.github.io/" target="_blank" class="nerf_authors_v2">Zhihang Zhong<span
+                        class="text-span_nerf"></span></a><sup>2,*</sup>,&nbsp;&nbsp;
+                    <a href="https://jimmysuen.github.io/" target="_blank" class="nerf_authors_v2">Xiao Sun<span
+                        class="text-span_nerf"></span></a><sup>2,*</sup>,&nbsp;&nbsp;
+                    <a href="https://scholar.google.com/citations?user=JD-5DKcAAAAJ&hl=en" target="_blank" class="nerf_authors_v2">Yinqiang Zheng<span
+                        class="text-span_nerf"></span></a><sup>1</sup>
+                </div>
+                <div>
+                    <h1 class="nerf_affiliation_v2"><sup>1 </sup>The University of Tokyo</h1>,
+                    <h1 class="nerf_affiliation_v2"><sup>2 </sup>Shanghai AI Lab</h1>,
+                    <h1 class="nerf_affiliation_v2"><sup>* </sup>Corresponding Author</h1>
+                </div>
+                
+                <div>
+                    <h3 class="grey-heading_nerf" style="margin-top: -3px; margin-bottom: 5px; font-size: 22px; text-align: center;">arXiv 2025</h1>
+                </div>
+
+                <div class="external-link">
+                    <a class="btn" href="https://arxiv.org/abs/2505.20255" role="button" target="_blank">
+                        <i class="ai ai-arxiv"></i> Paper </a>
+                    <a class="btn" href="https://github.com/MyNiuuu/AniCrafter" role="button" target="_blank" disabled>
+                        <i class="fa-brands fa-github"></i> Code </a>
+                    <a class="btn" href="https://huggingface.co/MyNiuuu/Anicrafter_release" role="button" target="_blank" disabled>🤗 HuggingFace Model </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="w-container_teaser grey_container_teaser">
+        <div style="height: 30px;"></div>
+        <!-- <div align="center">
+            <h3>
+              <strong>TL;DR:</strong> We leverage <strong>"3DGS Avatar + Background Video"</strong> as condition to the video diffusion model to <u>insert and animate anyone into any scene following given motion sequence.</u>
+            </h3>
+          </div> -->
+        <p class="simple_text_teaser"><strong>TL;DR:</strong> We control the <span style="color:rgba(101, 218, 121);">Video Diffusion Models</span> with <span style="color:rgba(245, 194, 66);">3DGS Avatars</span> to insert and animate anyone into any scene following given motion sequence.
+        </p>
+        <div style="height: 20px;"></div>
+
+        <div class="span_captions">
+            <p class="caption caption-1" style="margin-top: 5px; margin-bottom: 5px;">Character Image</p>
+            <p class="caption caption-2" style="margin-top: 5px; margin-bottom: 5px;">Avatar-Background Video</p>
+            <p class="caption caption-3" style="margin-top: 5px; margin-bottom: 5px;">Output Video</p>
+        </div>
+
+
+        <div class="three-column-box">
+        <div class="box">
+            <img src="assets/teaser/character_image/000000.jpg">
+        </div>
+        <div class="box vertical-stack">
+            <video autoplay muted loop playsinline src="assets/teaser/2_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/teaser/1_avatar.mp4"></video>
+        </div>
+        <div class="box vertical-stack">
+            <video autoplay muted loop playsinline src="assets/teaser/2_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/teaser/1_output.mp4"></video>
+        </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 90%;">
+
+        <div class="three-column-box">
+        <div class="box">
+            <img src="assets/teaser/character_image/000001.jpg">
+        </div>
+        <div class="box vertical-stack">
+            <video autoplay muted loop playsinline src="assets/teaser/4_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/teaser/3_avatar.mp4"></video>
+        </div>
+        <div class="box vertical-stack">
+            <video autoplay muted loop playsinline src="assets/teaser/4_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/teaser/3_output.mp4"></video>
+        </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+
+    </div>
+
+    <div style="height: 20px;"></div>
+
+    <div data-anchor="slide1" class="section nerf_section">
+        <div class="w-container_teaser grey_container_teaser">
+            <div style="height: 5px;"></div>
+            <h2 class="grey-heading_nerf" style="text-align: center;">Overview & Architecture</h2>
+            <div style="height: 10px;"></div>
+            <img src="assets/new_pipeline.jpg" style="width:90%; margin: auto; display: block;">
+            <div style="height: 10px;"></div>
+            <p class="simple_text">We introduce <b>AniCrafter</b>, a diffusion-based human-centric animation model that can seamlessly integrate and animate a given character into open-domain dynamic backgrounds while following given human motion sequences. Built on cutting-edge Image-to-Video (I2V) diffusion architectures, our model incorporates an innovative <u>"avatar-background" conditioning mechanism</u> that reframes opendomain human-centric animation as a <u>restoration task</u>, enabling more stable and versatile animation outputs.</p>
+            <div style="height: 20px;"></div>
+            <img src="assets/architecture_small.jpg" style="width:90%; margin: auto; display: block;">
+            <div style="height: 10px;"></div>
+            <p class="simple_text">Instead of predicting the target video, our model predicts “reference image + target video” based on the pretrained Image-to-Video (I2V) diffusion transformer model. 3D Convolution layers and mask embeddings are leveraged to formulate useful spatial-temporal features from both the avatar-background video and the SMPL-X mesh video.</p>
+            <div style="height: 20px;"></div>
+        </div>
+    </div>
+
+    <div style="height: 10px;"></div>
+
+
+    <div class="w-container_teaser grey_container_teaser">
+        <div style="height: 10px;"></div>
+        <h2 class="grey-heading_nerf" style="text-align: center;">Cross Character-Scene Animation</h2>
+        <div class="span_captions_cross">
+            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Avatar-Background</p>
+            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Character Image + Output</p>
+            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Avatar-Background</p>
+            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Character Image + Output</p>
+        </div>
+
+
+        <div class="four-column-box">
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/1_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/2_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/1_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/2_output.mp4"></video>
+        </div>
+         <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/3_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/4_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/3_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/4_output.mp4"></video>
+        </div>
+        </div>
+        
+        <!-- <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;"> -->
+
+
+        <div class="four-column-box">
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/5_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/6_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/5_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/6_output.mp4"></video>
+        </div>
+         <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/7_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/8_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/7_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/8_output.mp4"></video>
+        </div>
+        </div>
+
+        <!-- <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;"> -->
+
+
+        <div class="four-column-box">
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/9_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/10_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/9_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/10_output.mp4"></video>
+        </div>
+         <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/11_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/12_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/11_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/12_output.mp4"></video>
+        </div>
+        </div>
+
+        <!-- <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;"> -->
+
+
+        <div class="four-column-box">
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/13_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/14_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/13_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/14_output.mp4"></video>
+        </div>
+         <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/15_avatar.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/16_avatar.mp4"></video>
+        </div>
+        <div class="box_cross vertical-stack">
+            <video autoplay muted loop playsinline src="assets/cross/15_output.mp4"></video>
+            <video autoplay muted loop playsinline src="assets/cross/16_output.mp4"></video>
+        </div>
+        </div>
+
+
+        <div style="height: 20px;"></div>
+        <!-- <div class="grid-container-1">
+            <a class="mybtn" href="dmtet-based-gallery_0.html" role="button"> Click Here to See More Results! 😈😈😈 </a>
+        </div>
+        <div style="height: 10px;"></div> -->
+    </div>
+
+    <div style="height: 10px;"></div>
+
+
+    <div class="w-container_teaser grey_container_teaser">
+        <div style="height: 10px;"></div>
+        <h2 class="grey-heading_nerf" style="text-align: center;">Self-Reenactment Animation</h2>
+        <div style="height: -10px;"></div>
+        
+        <div class="span_captions_self">
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Character</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Avatar-Bkgd</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Output Video</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Ground-Truth</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Character</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Avatar-Bkgd</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Output Video</p>
+            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Ground-Truth</p>
+        </div>
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col1.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col3.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col4.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col5.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col1.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col3.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col4.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col5.mp4"></video>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;">
+        
+
+        <div class="span_captions_self">
+            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Character</p>
+            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Avatar-Bkgd</p>
+            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Output Video</p>
+            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Ground-Truth</p>
+        </div>
+
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col1.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col3.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col4.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col5.mp4"></video>
+            </div>
+        </div>
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col1.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col3.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col4.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col5.mp4"></video>
+            </div>
+        </div>
+
+        <div class="video_row">
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col1.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col3.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col4.mp4"></video>
+            </div>
+            <div class="video-container">
+                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col5.mp4"></video>
+            </div>
+        </div>
+
+
+
+        <div style="height: 20px;"></div>
+    </div>
+
+<div class="white_section_nerf grey_container w-container">
+<h2 class="grey-heading_nerf">BibTeX</h2>
+<div class="bibtex">
+    <pre><code>@article{niu2025anicrafter,
+        title={AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models},
+        author={Niu, Muyao and Cao, Mingdeng and Zhan, Yifan and Zhu, Qingtian and Ma, Mingze and Zhao, Jiancheng and Zeng, Yanhong and Zhong, Zhihang and Sun, Xiao and Zheng, Yinqiang},
+        journal={arXiv preprint arXiv:2505.20255},
+        year={2025}
+        }
+</code></pre>
+</div>
+
+
+
+</body>
+<footer>
+    This project page is inspired by <a href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a>, <a href="https://mrtornado24.github.io/DreamCraft3D/">DreamCraft3D</a>, <a href="https://sweetdreamer3d.github.io/">SweetDreamer</a>, and <a href="https://nerfies.github.io/">Nerfies</a>
+</footer>
+
+</html>
