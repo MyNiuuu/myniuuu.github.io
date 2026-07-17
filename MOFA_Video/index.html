@@ -41,6 +41,82 @@
 </head>
 
 <body>
+
+    <style>
+      .mv-navbar {
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+        font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      }
+      .mv-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 52px;
+      }
+      .mv-nav-item {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
+        color: #4a4a4a;
+        text-decoration: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+      .mv-nav-item:hover { background: #fafafa; color: #000; }
+      .mv-dropdown { position: relative; }
+      .mv-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 6px;
+        min-width: 160px;
+        padding: 6px 0;
+        display: none;
+        z-index: 30;
+      }
+      .mv-dropdown:hover .mv-dropdown-menu,
+      .mv-dropdown.open .mv-dropdown-menu { display: block; }
+      .mv-dropdown-menu a {
+        display: block;
+        padding: 8px 18px;
+        color: #4a4a4a;
+        text-decoration: none;
+        font-size: 0.95rem;
+        white-space: nowrap;
+      }
+      .mv-dropdown-menu a:hover { background: #fafafa; color: #000; }
+    </style>
+
+    <nav class="mv-navbar">
+      <div class="mv-nav-inner">
+        <a class="mv-nav-item" href="https://myniuuu.github.io/" aria-label="home">
+          <i class="fas fa-home"></i>
+        </a>
+        <div class="mv-dropdown" id="mvMore">
+          <button class="mv-nav-item" type="button" onclick="document.getElementById('mvMore').classList.toggle('open')">
+            More Research
+          </button>
+          <div class="mv-dropdown-menu">
+            <a href="https://myniuuu.github.io/AniCrafter/">AniCrafter</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener('click', function (e) {
+        var d = document.getElementById('mvMore');
+        if (d && !d.contains(e.target)) d.classList.remove('open');
+      });
+    </script>
+
     <div class="section hero nerf-_v2">
         <div class="container-2 nerf_header_v2 w-container">
             <h1 class="nerf_title_v2 custom_title">MOFA-Video: Controllable Image Animation via Generative <u><strong>Mo</strong></u>tion <u><strong>F</strong></u>ield <u><strong>A</strong></u>daptions in Frozen Image-to-Video Diffusion Model</h1>
