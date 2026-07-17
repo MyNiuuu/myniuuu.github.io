@@ -1,378 +1,1147 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="utf-8" />
-    <title>AniCrafter</title>
-    <link rel="icon" type="image/png" href="assets/film.png">
-    <meta content="AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models" name="description" />
-    <meta content="summary" name="twitter:card" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link href="static/css/template.css" rel="stylesheet" type="text/css" />
-    <link href="static/css/my_style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        WebFont.load({
-            google: {
-                families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic", "Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic", "Changa One:400,400italic", "Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic", "Varela Round:400", "Bungee Shade:regular", "Roboto:300,regular,500"]
-            }
-        });
-    </script>
-    <script type="text/javascript">
-        ! function (o, c) {
-            var n = c.documentElement,
-                t = " w-mod-";
-            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
-        }(window, document);
-    </script>
-    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-    <script type="text/javascript" src="static/js/zoom.js"></script>
-    <script type="text/javascript" src="static/js/video_comparison.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLDP9MKGC8"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<html>
 
-    gtag('config', 'G-MLDP9MKGC8');
-    </script>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Visual Instruction Tuning">
+  <meta name="keywords" content="human-centric animation video diffusion, text-to-video, text-to-image, diffusion model, animation video generation, AI animation, AI video generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AniCrafter</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="assets/dance.png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+  <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.16.0/gradio.js"></script>
 </head>
 
+<style>
+  .expandable-card .card-text-container {
+    max-height: 200px;
+    overflow-y: hidden;
+    position: relative;
+  }
+  .expandable-card.expanded .card-text-container {
+    max-height: none;
+  }
+  .expand-btn {
+    position: relative;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* margin-top: -20px; */
+    /* justify-content: center; */
+    color: #510c75;
+    border-color: transparent;
+  }
+  .expand-btn:hover {
+    background-color: rgba(200, 200, 200, 0.8);
+    text-decoration: none;
+    border-color: transparent;
+    color: #510c75;
+  }
+  .expand-btn:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  .expandable-card:not(.expanded) .card-text-container:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 1));
+  }
+  .expandable-card:not(.expanded) .expand-btn {
+    margin-top: -40px;
+  }
+  .card-body {
+    padding-bottom: 5px;
+  }
+  .vertical-flex-layout {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .figure-img {
+    max-width: 100%;
+    height: auto;
+  }
+  .adjustable-font-size {
+    font-size: calc(0.5rem + 2vw);
+  }
+  .chat-history {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* overflow-x: hidden; */
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  #gradio pre {
+    background-color: transparent;
+  }
+</style>
+
+<style>
+  table.GeneratedTable {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #c1c4c5;
+    border-style: solid;
+    color: #000000;
+  }
+  table.GeneratedTable td, table.GeneratedTable th {
+    border-width: 2px;
+    border-color: #9b9d9e;
+    border-style: solid;
+    padding: 3px;
+  }
+  table.GeneratedTable thead {
+    background-color: #6691ee;
+  }
+</style>
+
+<style>
+  /* ---- 0_firstdemo showcase ---- */
+  .showcase-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 26px;
+  }
+  .showcase-ref {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+  .showcase-ref img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  .showcase-ref figcaption {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  .showcase-videos {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .showcase-videos video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+  @media screen and (max-width: 768px) {
+    .showcase-row {
+      flex-direction: column;
+    }
+    .showcase-ref,
+    .showcase-videos {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* ---- 1_dyna_bkgd (avatar-background / output pairs) ---- */
+  .dyna-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .dyna-item {
+    text-align: center;
+  }
+  .dyna-cap {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .dyna-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+  @media screen and (max-width: 768px) {
+    .dyna-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ---- 5_novel_motion (original video + results) ---- */
+  .novel-case {
+    margin-bottom: 36px;
+  }
+  .novel-orig {
+    max-width: 33%;
+    margin: 0 auto 14px auto;
+  }
+  .novel-mid-cap {
+    margin: 10px auto 12px auto;
+  }
+  .novel-orig video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  @media screen and (max-width: 768px) {
+    .novel-orig {
+      max-width: 100%;
+    }
+  }
+
+  /* ---- 6_occ_edit (interactive editing pipeline, faithful to effect.png) ---- */
+  .occ-stage {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    aspect-ratio: 3400 / 2100;
+    overflow: hidden;
+  }
+  .occ-stage video {
+    position: absolute;
+    display: block;
+    width: 28.68%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .occ-mid {
+    position: absolute;
+    left: 27.88%;
+    top: 14.38%;
+    width: 44.74%;
+    height: auto;
+  }
+  .occ-hdr {
+    position: absolute;
+    top: 5.43%;
+    transform: translate(-50%, calc(-100% - 4px));
+    color: #555;
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    white-space: nowrap;
+  }
+  /* left column */
+  .occ-v0 { left: 0.12%; top: 5.43%; }
+  .occ-v2 { left: 0.12%; top: 39.76%; }
+  .occ-v4 { left: 0.12%; top: 74.14%; }
+  /* right column */
+  .occ-v1 { left: 71.24%; top: 5.43%; }
+  .occ-v3 { left: 71.24%; top: 39.76%; }
+  .occ-v5 { left: 71.24%; top: 74.14%; }
+
+  /* ---- 7_comparison ---- */
+  .cmp-block { margin-bottom: 26px; }
+  .cmp-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    align-items: center;
+  }
+  .cmp-hdr {
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #555;
+    padding-bottom: 2px;
+  }
+  .cmp-hdr.ours { color: #f68946; }
+  .cmp-grid video,
+  .cmp-grid img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
+  }
+  .cmp-grid .cmp-ours video { outline: 2px solid #f68946; }
+  /* narrower 3-column grid so its cells match the 6-column ones */
+  .cmp-narrow3 {
+    max-width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (max-width: 768px) {
+    .cmp-narrow3 { max-width: 100%; }
+  }
+
+  /* tighten the gap between the title hero and the teaser */
+  .hero:not(.teaser) .hero-body { padding-bottom: 1.5rem; }
+  .hero.teaser .hero-body { padding-top: 1rem; padding-bottom: 1rem; }
+</style>
+
+
 <body>
-    <div class="section hero nerf-_v2">
-        <div class="container-2 nerf_header_v2 w-container">
-            <h1 class="nerf_title_v2 custom_title">AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models</h1>
-            <!-- <div class="nerf_subheader_v2">ICLR 2024</div> -->
-            <div class="nerf_subheader_v2">
-                <div>
-                    <a href="https://myniuuu.github.io/" target="_blank" class="nerf_authors_v2">Muyao Niu<span
-                            class="text-span_nerf"></span></a><sup>1,2</sup>,&nbsp;&nbsp;
-                    <a href="https://github.com/ljzycmd" target="_blank" class="nerf_authors_v2">Mingdeng Cao<span
-                            class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
-                    <a href="https://yifever20002.github.io/yifanzhan.github.io/" target="_blank" class="nerf_authors_v2">Yifan Zhan<span
-                            class="text-span_nerf"></span></a><sup>1,2</sup>,&nbsp;&nbsp;
-                    <a href="https://qtzhu.me/" target="_blank" class="nerf_authors_v2">Qingtian Zhu<span
-                        class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
-                    <a href="https://github.com/mm2319" target="_blank" class="nerf_authors_v2">Mingze Ma<span
-                        class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
-                    <a href="https://github.com/zhaojiancheng007" target="_blank" class="nerf_authors_v2">Jiancheng Zhao<span
-                        class="text-span_nerf"></span></a><sup>1</sup>,&nbsp;&nbsp;
-                    </div>
-                    <div style="height: 5px;"></div>
-                    <div>   
-                    <a href="https://zengyh1900.github.io/" target="_blank" class="nerf_authors_v2">Yanhong Zeng<span
-                        class="text-span_nerf"></span></a><sup>2</sup>,&nbsp;&nbsp;
-                    <a href="https://zzh-tech.github.io/" target="_blank" class="nerf_authors_v2">Zhihang Zhong<span
-                        class="text-span_nerf"></span></a><sup>2,*</sup>,&nbsp;&nbsp;
-                    <a href="https://jimmysuen.github.io/" target="_blank" class="nerf_authors_v2">Xiao Sun<span
-                        class="text-span_nerf"></span></a><sup>2,*</sup>,&nbsp;&nbsp;
-                    <a href="https://scholar.google.com/citations?user=JD-5DKcAAAAJ&hl=en" target="_blank" class="nerf_authors_v2">Yinqiang Zheng<span
-                        class="text-span_nerf"></span></a><sup>1</sup>
-                </div>
-                <div>
-                    <h1 class="nerf_affiliation_v2"><sup>1 </sup>The University of Tokyo</h1>,
-                    <h1 class="nerf_affiliation_v2"><sup>2 </sup>Shanghai AI Lab</h1>,
-                    <h1 class="nerf_affiliation_v2"><sup>* </sup>Corresponding Author</h1>
-                </div>
-                
-                <div>
-                    <h3 class="grey-heading_nerf" style="margin-top: -3px; margin-bottom: 5px; font-size: 22px; text-align: center;">arXiv 2025</h1>
-                </div>
 
-                <div class="external-link">
-                    <a class="btn" href="https://arxiv.org/abs/2505.20255" role="button" target="_blank">
-                        <i class="ai ai-arxiv"></i> Paper </a>
-                    <a class="btn" href="https://github.com/MyNiuuu/AniCrafter" role="button" target="_blank" disabled>
-                        <i class="fa-brands fa-github"></i> Code </a>
-                    <a class="btn" href="https://huggingface.co/MyNiuuu/Anicrafter_release" role="button" target="_blank" disabled>🤗 HuggingFace Model </a>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://myniuuu.github.io/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
 
-
-
-
-    <div class="w-container_teaser grey_container_teaser">
-        <div style="height: 30px;"></div>
-        <!-- <div align="center">
-            <h3>
-              <strong>TL;DR:</strong> We leverage <strong>"3DGS Avatar + Background Video"</strong> as condition to the video diffusion model to <u>insert and animate anyone into any scene following given motion sequence.</u>
-            </h3>
-          </div> -->
-        <p class="simple_text_teaser"><strong>TL;DR:</strong> We control the <span style="color:rgba(101, 218, 121);">Video Diffusion Models</span> with <span style="color:rgba(245, 194, 66);">3DGS Avatars</span> to insert and animate anyone into any scene following given motion sequence.
-        </p>
-        <div style="height: 20px;"></div>
-
-        <div class="span_captions">
-            <p class="caption caption-1" style="margin-top: 5px; margin-bottom: 5px;">Character Image</p>
-            <p class="caption caption-2" style="margin-top: 5px; margin-bottom: 5px;">Avatar-Background Video</p>
-            <p class="caption caption-3" style="margin-top: 5px; margin-bottom: 5px;">Output Video</p>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://myniuuu.github.io/MOFA_Video/">
+              MOFA-Video
+            </a>
+          </div>
         </div>
-
-
-        <div class="three-column-box">
-        <div class="box">
-            <img src="assets/teaser/character_image/000000.jpg">
-        </div>
-        <div class="box vertical-stack">
-            <video autoplay muted loop playsinline src="assets/teaser/2_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/teaser/1_avatar.mp4"></video>
-        </div>
-        <div class="box vertical-stack">
-            <video autoplay muted loop playsinline src="assets/teaser/2_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/teaser/1_output.mp4"></video>
-        </div>
-        </div>
-        
-        <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 90%;">
-
-        <div class="three-column-box">
-        <div class="box">
-            <img src="assets/teaser/character_image/000001.jpg">
-        </div>
-        <div class="box vertical-stack">
-            <video autoplay muted loop playsinline src="assets/teaser/4_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/teaser/3_avatar.mp4"></video>
-        </div>
-        <div class="box vertical-stack">
-            <video autoplay muted loop playsinline src="assets/teaser/4_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/teaser/3_output.mp4"></video>
-        </div>
-        </div>
-
-        <div style="height: 20px;"></div>
-
+      </div>
     </div>
+  </nav>
 
-    <div style="height: 20px;"></div>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">AniCrafter: <span class="is-size-2">Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models</h1>
+            <h5 class="subtitle is-4 publication-awards">ACM Multimedia 2026</h5>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <sup><b style="color:#F0C041;font-weight:normal">&#x25B6</b><b style="color:#14c21c; font-weight:normal">&#x25B6</b></sup><a href="https://myniuuu.github.io/" style="color:#f68946;font-weight:normal;">Muyao Niu</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#F0C041; font-weight:normal">&#x25B6</b></sup><a href="https://github.com/ljzycmd" style="font-weight:normal;">Mingdeng Cao</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#F0C041; font-weight:normal">&#x25B6</b></sup><a href="https://yifever20002.github.io/yifanzhan.github.io/" style="font-weight:normal;">Yifan Zhan</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#F0C041; font-weight:normal">&#x25B6</b></sup><a href="https://qtzhu.me/" style="color:#f68946;font-weight:normal;">Qingtian Zhu</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#F0C041; font-weight:normal">&#x25B6</b></sup><a href="https://scholar.google.com/citations?user=ofa8fFoAAAAJ" style="font-weight:normal;">Weihang Ran</a>,
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <sup><b style="color:#3671EF; font-weight:normal">&#x25B6</b></sup><a href="https://zengyh1900.github.io/" style="font-weight:normal;">Yanhong Zeng</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#14c21c; font-weight:normal">&#x25B6</b></sup><a href="https://jimmysuen.github.io/" style="font-weight:normal;">Xiao Sun</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#FF2600; font-weight:normal">&#x25B6</b></sup><a href="https://zzh-tech.github.io/" style="font-weight:normal;">Zhihang Zhong</a>,
+              </span>
+              <span class="author-block">
+                <sup><b style="color:#F0C041; font-weight:normal">&#x25B6</b></sup><a href="https://scholar.google.com/citations?user=JD-5DKcAAAAJ" style="font-weight:normal;">Yinqiang Zheng</a>,
+              </span>
+            </div>
 
-    <div data-anchor="slide1" class="section nerf_section">
-        <div class="w-container_teaser grey_container_teaser">
-            <div style="height: 5px;"></div>
-            <h2 class="grey-heading_nerf" style="text-align: center;">Overview & Architecture</h2>
-            <div style="height: 10px;"></div>
-            <img src="assets/new_pipeline.jpg" style="width:90%; margin: auto; display: block;">
-            <div style="height: 10px;"></div>
-            <p class="simple_text">We introduce <b>AniCrafter</b>, a diffusion-based human-centric animation model that can seamlessly integrate and animate a given character into open-domain dynamic backgrounds while following given human motion sequences. Built on cutting-edge Image-to-Video (I2V) diffusion architectures, our model incorporates an innovative <u>"avatar-background" conditioning mechanism</u> that reframes opendomain human-centric animation as a <u>restoration task</u>, enabling more stable and versatile animation outputs.</p>
-            <div style="height: 20px;"></div>
-            <img src="assets/architecture_small.jpg" style="width:90%; margin: auto; display: block;">
-            <div style="height: 10px;"></div>
-            <p class="simple_text">Instead of predicting the target video, our model predicts “reference image + target video” based on the pretrained Image-to-Video (I2V) diffusion transformer model. 3D Convolution layers and mask embeddings are leveraged to formulate useful spatial-temporal features from both the avatar-background video and the SMPL-X mesh video.</p>
-            <div style="height: 20px;"></div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><b style="color:#F0C041; font-weight:normal">&#x25B6 </b> The University of
+                Tokyo</b></span>
+              <span class="author-block"><b style="color:#14c21c; font-weight:normal">&#x25B6 </b> Shanghai AI Lab</span>
+              <span class="author-block"><b style="color:#3671EF; font-weight:normal">&#x25B6 </b>Ant Group</span>
+              <span class="author-block"><b style="color:#FF2600; font-weight:normal">&#x25B6 </b>Shanghai Jiao Tong University</span>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2505.20255" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/MyNiuuu/AniCrafter" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/MyNiuuu/Anicrafter_release" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-share-square"></i>
+                    </span>
+                    <span>HuggingFace Model</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-video"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </section>
 
-    <div style="height: 10px;"></div>
-
-
-    <div class="w-container_teaser grey_container_teaser">
-        <div style="height: 10px;"></div>
-        <h2 class="grey-heading_nerf" style="text-align: center;">Cross Character-Scene Animation</h2>
-        <div class="span_captions_cross">
-            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Avatar-Background</p>
-            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Character Image + Output</p>
-            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Avatar-Background</p>
-            <p class="caption caption-4" style="margin-top: 5px; margin-bottom: 5px;">Character Image + Output</p>
-        </div>
-
-
-        <div class="four-column-box">
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/1_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/5_avatar.mp4"></video>
-        </div>
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/1_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/5_output.mp4"></video>
-        </div>
-         <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/3_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/6_avatar.mp4"></video>
-        </div>
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/3_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/6_output.mp4"></video>
-        </div>
-        </div>
-
-        <!-- <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;"> -->
-
-        <div class="four-column-box">
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/8_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/10_avatar.mp4"></video>
-        </div>
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/8_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/10_output.mp4"></video>
-        </div>
-         <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/11_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/12_avatar.mp4"></video>
-        </div>
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/11_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/12_output.mp4"></video>
-        </div>
-        </div>
-
-        <!-- <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;"> -->
-
-
-        <div class="four-column-box">
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/13_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/14_avatar.mp4"></video>
-        </div>
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/13_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/14_output.mp4"></video>
-        </div>
-         <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/15_avatar.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/16_avatar.mp4"></video>
-        </div>
-        <div class="box_cross vertical-stack">
-            <video autoplay muted loop playsinline src="assets/cross/15_output.mp4"></video>
-            <video autoplay muted loop playsinline src="assets/cross/16_output.mp4"></video>
-        </div>
-        </div>
-
-
-        <div style="height: 20px;"></div>
-        <!-- <div class="grid-container-1">
-            <a class="mybtn" href="dmtet-based-gallery_0.html" role="button"> Click Here to See More Results! 😈😈😈 </a>
-        </div>
-        <div style="height: 10px;"></div> -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h4 class="subtitle has-text-centered">
+          <strong>TL;DR:</strong> We control Video Diffusion Models with "<span style="color:rgba(245, 194, 66);">3DGS Avatars</span> + <span style="color:rgba(101, 218, 121);">Background Videos</span>" to insert and animate anyone into any scene, supporting <u>character-scene occlusion</u>, <u>character-object interaction</u>, and <u>novel motion</u>.
+        </h4>
+      </div>
     </div>
-
-    <div style="height: 10px;"></div>
-
-
-    <div class="w-container_teaser grey_container_teaser">
-        <div style="height: 10px;"></div>
-        <h2 class="grey-heading_nerf" style="text-align: center;">Self-Reenactment Animation</h2>
-        <div style="height: -10px;"></div>
-        
-        <div class="span_captions_self">
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Character</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Avatar-Bkgd</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Output Video</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Ground-Truth</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Character</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Avatar-Bkgd</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Output Video</p>
-            <p class="caption_self caption-6" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Ground-Truth</p>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+          <figure>
+            <img id="teaser" width="100%" src="assets/teaser.jpeg">
+          </figure>
         </div>
-
-        <div class="video_row">
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col1.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col3.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col4.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/2/col5.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col1.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col3.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col4.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo-self" loop playsinline autoPlay muted src="assets/self/3/col5.mp4"></video>
-            </div>
-        </div>
-
-        <hr style="border: none; border-top: 1px dashed #000000; margin: 10px auto; width: 95%;">
-        
-
-        <div class="span_captions_self">
-            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Character</p>
-            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Avatar-Bkgd</p>
-            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Output Video</p>
-            <p class="caption_self caption-4" style="margin-top: 5px; margin-bottom: 5px; font-size: 16px">Ground-Truth</p>
-        </div>
-
-
-        <div class="video_row">
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col1.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col3.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col4.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/4/col5.mp4"></video>
-            </div>
-        </div>
-
-        <div class="video_row">
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col1.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col3.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col4.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/5/col5.mp4"></video>
-            </div>
-        </div>
-
-        <div class="video_row">
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col1.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col3.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col4.mp4"></video>
-            </div>
-            <div class="video-container">
-                <video class="myvideo" loop playsinline autoPlay muted src="assets/self/6/col5.mp4"></video>
-            </div>
-        </div>
-
-
-
-        <div style="height: 20px;"></div>
+      </div>
     </div>
+  </section>
 
-<div class="white_section_nerf grey_container w-container">
-<h2 class="grey-heading_nerf">BibTeX</h2>
-<div class="bibtex">
-    <pre><code>@article{niu2025anicrafter,
-        title={AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models},
-        author={Niu, Muyao and Cao, Mingdeng and Zhan, Yifan and Zhu, Qingtian and Ma, Mingze and Zhao, Jiancheng and Zeng, Yanhong and Zhong, Zhihang and Sun, Xiao and Zheng, Yinqiang},
-        journal={arXiv preprint arXiv:2505.20255},
-        year={2025}
+  <!-- <section class="section"  style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Recent advances in video diffusion models have substantially enhanced character animation techniques. However, existing methods primarily depend on structural conditions, such as DWPose or SMPL-X, to animate character images, which limits their effectiveness in open-domain scenarios involving dynamic backgrounds or complex character-scene interactions. This study presents AniCrafter, a diffusion-based human-centric animation model designed to seamlessly integrate and animate a given character within open-domain dynamic backgrounds while adhering to specified human motion sequences. Built upon advanced Image-to-Video (I2V) diffusion architectures, the model introduces an innovative ``avatar-background'' conditioning mechanism that reformulates open-domain human-centric animation as a restoration problem, thereby achieving versatile, occlusion-aware animation results. Experimental evaluations demonstrate that the proposed approach outperforms current state-of-the-art methods and exhibits an exceptional capability in handling challenging scenarios.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+
+
+
+  <section class="section" style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+          <h2 class="title is-3">Video Demo</h2>
+          <div class="content has-text-justified">
+            <video width="100%" controls>
+              <source src="file:///Users/nmy/UTokyo/intern/ShanghaiAILab/MovieCrafter/sig26_submission/video_demo_190.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Showcase</h2>
+          <div class="content has-text-centered">
+
+            <!-- Character 1 -->
+            <div class="showcase-row">
+              <figure class="showcase-ref">
+                <img src="assets/0_firstdemo/array/ref_img/Picture1.jpg" alt="Reference character 1">
+              </figure>
+              <div class="showcase-videos">
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_1/0.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_1/1.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_1/2.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_1/3.mp4"></video>
+              </div>
+            </div>
+
+            <!-- Character 2 -->
+            <div class="showcase-row">
+              <figure class="showcase-ref">
+                <img src="assets/0_firstdemo/array/ref_img/Picture2.jpg" alt="Reference character 2">
+              </figure>
+              <div class="showcase-videos">
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_2/0.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_2/1.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_2/2.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_2/3.mp4"></video>
+              </div>
+            </div>
+
+            <!-- Character 3 -->
+            <div class="showcase-row">
+              <figure class="showcase-ref">
+                <img src="assets/0_firstdemo/array/ref_img/Picture3.jpg" alt="Reference character 3">
+              </figure>
+              <div class="showcase-videos">
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_3/0.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_3/1.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_3/2.mp4"></video>
+                <video autoplay loop muted playsinline src="assets/0_firstdemo/array/out_3/3.mp4"></video>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation with Dynamic Background</h2>
+          <div class="content has-text-centered">
+
+            <!-- Case 0 -->
+            <div class="dyna-grid">
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/3_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/3_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/4_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/4_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/5_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_0/5_right.mp4"></video></div>
+            </div>
+
+            <!-- Case 1 -->
+            <div class="dyna-grid">
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/3_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/3_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/4_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/4_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/5_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/1_dyna_bkgd/case_1/5_right.mp4"></video></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation with Scene Occlusion</h2>
+          <div class="content has-text-centered">
+
+            <div class="dyna-grid">
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_0/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_0/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_0/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_0/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_0/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_0/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_1/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_1/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_1/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_1/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_1/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_1/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_2/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_2/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_2/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_2/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_2/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_2/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_3/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_3/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_3/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_3/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_3/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/2_scene_occ/case_3/2_right.mp4"></video></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation with Object Interaction</h2>
+          <div class="content has-text-centered">
+
+            <div class="dyna-grid">
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_0/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_0/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_0/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_0/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_0/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_0/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_1/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_1/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_1/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_1/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_1/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_1/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_2/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_2/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_2/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_2/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_2/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_2/2_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_3/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_3/0_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_3/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_3/1_right.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_3/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/3_obj_interac/case_3/2_right.mp4"></video></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation with Extreme Body Shapes</h2>
+          <div class="content has-text-centered">
+
+            <div class="dyna-grid">
+              <!-- 1: case_0/0 -->
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_0/0_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_0/0_right.mp4"></video></div>
+              <!-- 3: case_0/2 -->
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_0/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_0/2_right.mp4"></video></div>
+              <!-- 6: case_1/2 -->
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_1/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_1/2_right.mp4"></video></div>
+              <!-- 5: case_1/1 -->
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_1/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_1/1_right.mp4"></video></div>
+              <!-- 8: case_2/1 -->
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_2/1_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_2/1_right.mp4"></video></div>
+              <!-- 9: case_2/2 -->
+              <div class="dyna-item"><div class="dyna-cap">avatar-background</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_2/2_left.mp4"></video></div>
+              <div class="dyna-item"><div class="dyna-cap">output</div><video autoplay loop muted playsinline src="assets/4_ex_shape/case_2/2_right.mp4"></video></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation with Novel Motion</h2>
+          <div class="content has-text-centered">
+
+            <!-- Case 0 -->
+            <div class="novel-case">
+              <div class="novel-orig">
+                <div class="dyna-cap">Original Video</div>
+                <video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/origin_aligned.mp4"></video>
+              </div>
+              <div class="dyna-cap novel-mid-cap">Novel Motion Output</div>
+              <div class="dyna-grid">
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/0_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/1_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/2_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/3_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/4_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/5_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/6_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_0/7_right.mp4"></video></div>
+              </div>
+            </div>
+
+            <!-- Case 1 -->
+            <div class="novel-case">
+              <div class="novel-orig">
+                <div class="dyna-cap">Original Video</div>
+                <video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/origin_aligned.mp4"></video>
+              </div>
+              <div class="dyna-cap novel-mid-cap">Novel Motion Output</div>
+              <div class="dyna-grid">
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/4_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/5_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/0_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/1_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/2_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/3_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/6_right.mp4"></video></div>
+                <div class="dyna-item"><video autoplay loop muted playsinline src="assets/5_novel_motion/case_1/7_right.mp4"></video></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Animation with Interactive Occlusion Editing</h2>
+          <div class="content">
+
+            <div class="occ-stage">
+              <div class="occ-hdr" style="left:14.46%;">Avatar-Background</div>
+              <div class="occ-hdr" style="left:85.56%;">Output</div>
+
+              <video class="occ-v0" autoplay loop muted playsinline src="assets/6_occ_edit/0.mp4"></video>
+              <video class="occ-v1" autoplay loop muted playsinline src="assets/6_occ_edit/1.mp4"></video>
+              <video class="occ-v2" autoplay loop muted playsinline src="assets/6_occ_edit/2.mp4"></video>
+              <video class="occ-v3" autoplay loop muted playsinline src="assets/6_occ_edit/3.mp4"></video>
+              <video class="occ-v4" autoplay loop muted playsinline src="assets/6_occ_edit/4.mp4"></video>
+              <video class="occ-v5" autoplay loop muted playsinline src="assets/6_occ_edit/5.mp4"></video>
+
+              <img class="occ-mid" src="assets/6_occ_edit/middle.png" alt="AniCrafter DiT editing pipeline">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" style="background-color:#efeff081">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Comparison with Different Methods</h2>
+          <div class="content">
+
+            <!-- Cross-identity reenactment -->
+            <div class="cmp-block">
+              <h3 class="title is-5">Cross-Identity Reenactment</h3>
+              <div class="cmp-grid">
+                <div class="cmp-hdr">Reference</div>
+                <div class="cmp-hdr">SMPL-X</div>
+                <div class="cmp-hdr">HumanVid</div>
+                <div class="cmp-hdr">MIMO</div>
+                <div class="cmp-hdr">VACE</div>
+                <div class="cmp-hdr ours">Ours</div>
+
+                <!-- case 0 -->
+                <div><img src="assets/7_comparison/0_cross/case_0/Picture1.png" alt="reference"></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_0/smplx.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_0/humanvid.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_0/mimo.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_0/vace.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_0/ours.mp4"></video></div>
+
+                <!-- case 1 -->
+                <div><img src="assets/7_comparison/0_cross/case_1/Picture1.png" alt="reference"></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_1/smplx.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_1/humanvid.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_1/mimo.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_1/vace.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/7_comparison/0_cross/case_1/ours.mp4"></video></div>
+              </div>
+            </div>
+
+            <!-- Self reenactment -->
+            <div class="cmp-block">
+              <h3 class="title is-5">Self-Reenactment</h3>
+              <div class="cmp-grid">
+                <div class="cmp-hdr">Reference</div>
+                <div class="cmp-hdr">GT</div>
+                <div class="cmp-hdr">HumanVid</div>
+                <div class="cmp-hdr">MIMO</div>
+                <div class="cmp-hdr">VACE</div>
+                <div class="cmp-hdr ours">Ours</div>
+
+                <!-- case 0 -->
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_0/ref.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_0/gt.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_0/humanvid.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_0/mimo.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_0/vace.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_0/ours.mp4"></video></div>
+
+                <!-- case 1 -->
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_1/ref.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_1/gt.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_1/humanvid.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_1/mimo.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_1/vace.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/7_comparison/1_self/case_1/ours.mp4"></video></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Ablation Study</h2>
+          <div class="content">
+
+            <!-- Relighting ablation -->
+            <div class="cmp-block">
+              <h3 class="title is-5">Relighting Augmentation</h3>
+              <div class="cmp-grid cmp-narrow3" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="cmp-hdr">Avatar-Background</div>
+                <div class="cmp-hdr">w/o Relighting</div>
+                <div class="cmp-hdr ours">Ours</div>
+
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_0/0.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_0/1.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_0/2.mp4"></video></div>
+
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_1/0.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_1/1.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_1/2.mp4"></video></div>
+
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_2/0.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_2/1.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/8_ablation/norelight/case_2/2.mp4"></video></div>
+              </div>
+            </div>
+
+            <!-- Avatar condition ablation -->
+            <div class="cmp-block">
+              <h3 class="title is-5">Avatar-Background Condition</h3>
+              <div class="cmp-grid">
+                <div class="cmp-hdr">Reference</div>
+                <div class="cmp-hdr">SMPL-X</div>
+                <div class="cmp-hdr">Avatar-Background</div>
+                <div class="cmp-hdr">w/o Avatar</div>
+                <div class="cmp-hdr ours">Ours</div>
+                <div class="cmp-hdr">GT</div>
+
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/noavatar/0.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/noavatar/1.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/noavatar/2.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/noavatar/3.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/8_ablation/noavatar/4.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/noavatar/5.mp4"></video></div>
+              </div>
+            </div>
+
+            <!-- Mask condition ablation -->
+            <div class="cmp-block">
+              <h3 class="title is-5">Mask Strategy</h3>
+              <div class="cmp-grid">
+                <div class="cmp-hdr">Reference</div>
+                <div class="cmp-hdr">SMPL-X</div>
+                <div class="cmp-hdr">Avatar-Background</div>
+                <div class="cmp-hdr">w/o Mask</div>
+                <div class="cmp-hdr ours">Ours</div>
+                <div class="cmp-hdr">GT</div>
+
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/nomask/0.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/nomask/1.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/nomask/2.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/nomask/3.mp4"></video></div>
+                <div class="cmp-ours"><video autoplay loop muted playsinline src="assets/8_ablation/nomask/4.mp4"></video></div>
+                <div><video autoplay loop muted playsinline src="assets/8_ablation/nomask/5.mp4"></video></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section" id="BibTeX" style="background-color:#efeff081">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        TBA
+  </code></pre>
+    </div>
+  </section>
+  
+  <section class="section" id="Acknowledgement">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgement</h2>
+      <p>
+        This website is adapted from <a
+        href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://llava-vl.github.io/">LLaVA</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  We thank the LLaMA team for giving us access to their models, and open-source projects, including Alpaca and Vicuna.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // Handle message showing
+    function createChatRow(sender, text, imageSrc) {
+      var article = document.createElement("article");
+      article.className = "media"
+
+      var figure = document.createElement("figure");
+      figure.className = "media-left";
+
+      var span = document.createElement("span");
+      span.className = "icon is-large";
+
+      var icon = document.createElement("i");
+      icon.className = "fas fas fa-2x" + (sender === "User" ? " fa-user " : sender === "LLaVA" ? " fa-robot" : "");
+
+      var media = document.createElement("div");
+      media.className = "media-content";
+
+      var content = document.createElement("div");
+      content.className = "content";
+
+      var para = document.createElement("p");
+
+      // wrap text in pre tag to preserve whitespace and line breaks
+      var pre_text = document.createElement("pre");
+      pre_text.style = "background-color: white; font-size: 18px; font-family: Arial; padding: 0; margin: 0; white-space: pre-wrap; word-wrap: break-word;";
+      var paraText = document.createTextNode(text);
+      pre_text.appendChild(paraText);
+
+      var strong = document.createElement("strong");
+      strong.innerHTML = sender;
+      var br = document.createElement("br");
+
+      para.appendChild(strong);
+      para.appendChild(br);
+      para.appendChild(pre_text);
+
+      // Add image if imageSrc is provided
+      if (imageSrc) {
+        var img = document.createElement("img");
+        img.src = imageSrc;
+        img.style = "max-width: 100%; max-height: 300px;"; // Adjust the style as needed
+        para.appendChild(img);
+      }
+
+      content.appendChild(para);
+      media.appendChild(content);
+      span.appendChild(icon);
+      figure.appendChild(span);
+      if (sender !== "Description") {
+        article.appendChild(figure);
+      };
+      article.appendChild(media);
+      return article;
+    }
+
+    function addMessageToChatHistory(sender, message, imageSrc) {
+      const chatHistory = document.querySelector('.chat-history');
+      const chatRow = createChatRow(sender, message, imageSrc);
+      chatHistory.appendChild(chatRow);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+
+    function clearChatHistory() {
+      const chatHistory = document.querySelector('.chat-history');
+      chatHistory.innerHTML = "";
+    }
+
+    // 
+    const conversations = [
+      {
+        "description": "monalisa",
+        "turns": [
+          // ["Description", "Please read the description and answer the question."],
+          ["User", "", "/static/images/monalisa.jpg"],
+          ["User", "Do you know who drew this painting?​"],
+          ["LLaVA",
+            "The painting depicts a woman, commonly believed to be Mona Lisa, the famous artwork by Leonardo da Vinci. " +
+            "It is a portrait painting that showcases the woman's enigmatic smile and has become one of the most famous and iconic art pieces in the world. " +
+            "The original work is displayed in the Louvre Museum in Paris, and it is known for its intricate details, use of oil paint, and the artist's innovative techniques that contributed to its enduring appeal and mystery.​​"
+          ]
+        ]
+      },
+      {
+        "description": "monalisa with dog head",
+        "turns": [
+          ["User", "", "/static/images/monalisa-fun.jpg"],
+          ["User", "Do you know who drew this painting?​"],
+          ["LLaVA", "The painting depicts a dog in a humorous situation, where it appears to be wearing a woman's dress and standing in front of a landscape. Although the artist of the painting is not explicitly identified, it could be a reference to the famous artist Da Vinci, known for his artistic works, including the Mona Lisa. The painting is likely a creative and comical take on the traditional portrait style, replacing a human figure with a dog dressed in a woman's clothing, making it an interesting and amusing visual piece.​"]
+        ]
+      },
+      {
+        "description": "Titanic Rose and Jack",
+        "turns": [
+          ["User", "", "/static/images/titanic.jpg"],
+          ["User", "What's the ending of this movie?​​"],
+          ["LLaVA", "​In the image, a young woman is leaning on a man in front of a beautiful sunset, with both of them standing on a boat. They appear to be enjoying a romantic moment together. The scene suggests that they could be depicted as the characters Jack and Rose from the popular movie Titanic. In the movie, their romance blossoms aboard the fictional ocean liner Titanic, with the pair ultimately sharing a passionate kiss as the ship sinks into the ocean. The ending of the movie is known for its emotional and heartfelt scenes, where the characters are forced to say goodbye to each other as they are separated by the sinking ship. The image evokes a sense of romance and nostalgia, paying tribute to the iconic love story portrayed in the movie Titanic.​"]
+        ]
+      },
+      {
+        "description": "Fridge",
+        "turns": [
+          ["User", "", "/static/images/fridge.jpg"],
+          ["User", "What are the meals that I can cook with these?​​"],
+          ["LLaVA", "With the variety of food items stored in the refrigerator, you can prepare several meals. For example, you can create a fruit salad using the strawberries, blueberries, and carrots. Additionally, you can make a delicious smoothie using the fruits and vegetables, which would be a healthy and nutritious snack or breakfast option. The milk and eggs can be used to create various dishes, such as a milk-based smoothie, a baked casserole, or scrambled eggs. The juice can also be used to make a fresh fruit and juice mix or as a refreshing homemade popsicle. The possibilities are vast, and the meals you can create will depend on your preferences and dietary needs.​​"],
+          ["User", "I would like to do the fruit salad.  Show me the recipe.​"],
+          ["LLaVA",
+            `Certainly! Here's a simple fruit salad recipe using the items in your refrigerator:​
+
+Ingredients:​
+- 2 cups fresh strawberries, sliced​
+- 1 cup fresh blueberries​
+- 1 large carrot, grated​
+- Juice of half a lemon​
+- A handful of chopped fresh parsley or mint​
+- A few ice cubes​
+- Optional: honey or maple syrup (adjust to taste)​
+
+Instructions:​
+1. In a large bowl, combine the sliced strawberries, blueberries, and carrot. Gently toss them together to mix.​
+2. Drizzle the juice of half a lemon over the fruit and vegetables to prevent them from oxidizing and add a refreshing citrus flavor.​
+3. Sprinkle the chopped fresh parsley or mint over the fruit and gently toss once more.​
+4. If desired, add a drizzle of honey or maple syrup for a touch of sweetness. Adjust the amount according to your taste preferences.​
+5. Cover the bowl and refrigerate the fruit salad for at least 30 minutes or up to a few hours. This allows the flavors to meld and creates a more refreshing salad.​
+6. Serve the fruit salad in cups or bowls, garnished with a sprinkle of fresh parsley or mint, if desired.​
+
+This fruit salad recipe is perfect for a healthy snack or side dish, and with the variety of ingredients available in your refrigerator, it should be easy to put together quickly.`]]
+      },
+      {
+        "description": "Beautiful View",
+        "turns": [
+          ["User", "", "/static/images/view.jpg"],
+          ["User", "What are the things I should be cautious about when I visit here?​​"],
+          ["LLaVA", "When visiting this peaceful location with a pier extending over a serene lake, surrounded by mountains, there are several things to be cautious about. First, pay attention to the weather conditions, as sudden changes in weather, especially strong winds or storms, can cause the water to become rough and pose risks to the stability of the pier. Second, be mindful of the structural integrity of the pier; avoid overloading it with too many people or excessive weight, as this could potentially damage the pier or cause it to collapse. Additionally, be aware of the surrounding wildlife and respect their space; do not harm or disturb them in any way. Finally, if you decide to go fishing, ensure that you adhere to any local fishing regulations and use appropriate fishing techniques to keep the lake ecosystem healthy and maintain the balance of the food chain.​​"],
+          ["User", "Compose an engaging travel blog post about my trip to this place, highlighting the beautiful sceneries, joyful experiences, and include possible anecdotes.​​"],
+          ["LLaVA",
+            `Traveling to this picturesque location with a serene lake and mountains in the background was a refreshing and rejuvenating experience. The pier extending over the calm water provided an excellent vantage point from which to appreciate the breathtaking scenery. As I stood on the pier, I couldn't help but feel a deep connection with nature, taking a moment to soak in the peaceful atmosphere.​
+
+One of the highlights of my trip was undoubtedly the fishing experience. The area is teeming with life, and I was thrilled to land a sizeable catch, despite the modest size of the lake. The joy of fishing in such a beautiful setting was truly rewarding, and it allowed me to take a break from my busy life and truly immerse myself in the tranquility of nature.​
+
+While exploring the surrounding area, I came across a family of birds that had built a nest close to the pier, adding to the charm of the location. Interacting with the wildlife and observing their behavior was an enriching experience that I'll cherish for years to come.​
+
+In conclusion, this idyllic destination provided me with an opportunity to unwind and recharge, surrounded by mesmerizing natural beauty and the gentle sounds of water and wildlife. If you're looking for a serene escape from the hustle and bustle of everyday life, this pier overlooking the lake is the perfect place to find solace and reconnect with nature.`
+          ]
+        ]
+      },
+    ];
+
+    // The current image index
+    let currentIndex = 0;
+
+    // The function to update the displayed chat history
+    function update_dialog_demo() {
+      // Clear the chat history
+      clearChatHistory();
+
+      for (let i = 0; i < conversations[currentIndex].turns.length; i++) {
+        if (conversations[currentIndex].turns[i].length == 2) {
+          addMessageToChatHistory(conversations[currentIndex].turns[i][0], conversations[currentIndex].turns[i][1]);
         }
-</code></pre>
-</div>
+        else {
+          addMessageToChatHistory(conversations[currentIndex].turns[i][0], conversations[currentIndex].turns[i][1], conversations[currentIndex].turns[i][2]);
+        }
+      }
+
+      // scroll to the top of the chat history
+      document.querySelector('.chat-history').scrollTop = 0;
+    }
+
+    // Initialize the displayed image
+    update_dialog_demo();
+
+    // Event listeners for the buttons
+    document.getElementById('prev-question').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + conversations.length) % conversations.length;
+      update_dialog_demo();
+    });
+
+    document.getElementById('next-question').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % conversations.length;
+      update_dialog_demo();
+    });
 
 
+  </script>
+
+  <script>
+    // mobile navbar burger toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      var burger = document.querySelector('.navbar-burger');
+      if (burger) {
+        burger.addEventListener('click', function () {
+          var target = document.getElementById(burger.dataset.target);
+          burger.classList.toggle('is-active');
+          if (target) target.classList.toggle('is-active');
+        });
+      }
+    });
+  </script>
 
 </body>
-<footer>
-    This project page is inspired by <a href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a>, <a href="https://mrtornado24.github.io/DreamCraft3D/">DreamCraft3D</a>, <a href="https://sweetdreamer3d.github.io/">SweetDreamer</a>, and <a href="https://nerfies.github.io/">Nerfies</a>
-</footer>
 
 </html>
