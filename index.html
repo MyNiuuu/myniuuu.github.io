@@ -6,13 +6,12 @@
     <link rel="icon" type="image/png" href="images/cow.png">
     <meta name="author" content="Muyao Niu">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     
   </head>
 
   <body>
-    <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <table style="width:100%;max-width:880px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -22,8 +21,21 @@
                   Muyao Niu (牛慕尧)
                 </p>
                 <p>Hi, I'm Muyao Niu.
-                  I am a 2nd year Ph.D. student in the Department of Mechano-Informatics, the University of Tokyo (UTokyo). My supervisor is Prof. <a href="https://www.ai.u-tokyo.ac.jp/ja/members/yqzheng">Yinqiang Zheng</a> . I received my B.E. degree from Dalian University of Technology in 2022. My research interests include AIGC, Computational Photography, and 3D Vision.
+                  I am a 2nd year Ph.D. student in the Department of Mechano-Informatics, the University of Tokyo (UTokyo). My supervisor is Prof. <a href="https://scholar.google.com/citations?user=JD-5DKcAAAAJ">Yinqiang Zheng</a>. 
                 </p>
+
+                <p>My research interests include:</p>
+                <ul>
+                  <li>Generative Modeling (video &amp; 3D)</li>
+                  <li>NeRF &amp; 3DGS</li>
+                  <li>Computational Photography</li>
+                </ul>
+
+                <p>
+                  I received my Master degree from The University of Tokyo in 2024, and B.E. degree from Dalian University of Technology in 2022. 
+                </p>
+
+
                 <p style="text-align:center">
                   <a href="mailto:muyao.niu@gmail.com">Email</a> &nbsp;/&nbsp;
                   <a href="https://github.com/MyNiuuu">Github</a> &nbsp;/&nbsp;
@@ -32,7 +44,7 @@
                 </p>
               </td>
               <td style="padding:2.5%;width:30%;max-width:30%">
-                <a href="images/niumuyao.png"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/niumuyao.png" class="hoverZoomLink"></a>
+                <a href="images/niumuyao.png"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/thumbs/niumuyao.jpg" class="hoverZoomLink"></a>
               </td>
             </tr>
           </tbody></table>
@@ -40,10 +52,60 @@
           
 
 
+
+          <p class="nav">
+            <a href="#news">News 🔥</a><span class="sep">&middot;</span><a href="#papers">Selected Papers 📃</a><span class="sep">&middot;</span><a href="#publications">Full Publication List 📚</a><span class="sep">&middot;</span><a href="#awards">Awards 🏆</a>
+          </p>
+
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Selected 5 Papers</h2>
+                <h2 id="news">News 🔥🔥</h2>
+                <ul class="news" data-collapse="3">
+                  <li><span class="newsdate">2026.07</span><a href="https://myniuuu.github.io/AniCrafter">AniCrafter</a> and <a href="https://github.com/MyNiuuu/3DarkFusion">3DarkFusion</a> are accepted to ACM MM 2026!</li>
+                  <li><span class="newsdate">2026.06</span><a href="https://arxiv.org/abs/2607.18436">Surprise Forcing</a> and <a href="https://yifever20002.github.io/CompoSIA/">CompoSIA</a> are accepted to ECCV 2026!</li>
+                  <li><span class="newsdate">2026.02</span><a href="https://github.com/MyNiuuu/MAD-Avatar">MAD-Avatar</a> is accepted to CVPR 2026!</li>
+                  <li><span class="newsdate">2025.12</span>We release <a href="https://visionary-laboratory.github.io/visionary/">Visionary</a>, feel free to try it!</li>
+                  <li><span class="newsdate">2025.06</span><a href="https://arxiv.org/abs/2504.12899">Tree-NeRV</a> and <a href="https://github.com/Yifever20002/ToMiE">ToMiE</a> are accepted to ICCV 2025!</li>
+                  <li><span class="newsdate">2024.12</span><a href="https://arxiv.org/abs/2503.00377">Event Attack</a> is accepted to AAAI 2025!</li>
+                  <li><span class="newsdate">2024.09</span>We release <a href="https://stereocrafter.github.io/">StereoCrafter</a>, feel free to try it!</li>
+                  <li><span class="newsdate">2024.06</span><a href="https://ailab-cvc.github.io/cvvae/index.html">CV-VAE</a> is accepted to NeurIPS 2024!
+</li>
+                  <li><span class="newsdate">2024.06</span><a href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a>, <a href="https://github.com/MyNiuuu/RS-NeRF">RS-NeRF</a>, and <a href="https://github.com/Yifever20002/KFD-NeRF">KFD-NeRF</a> are accepted to ECCV 2024!</li>
+                  <li><span class="newsdate">2024.05</span>We release <a href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a> and <a href="https://ailab-cvc.github.io/cvvae/index.html">CV-VAE</a>, feel free to try it!</li>
+                </ul>
+                <p class="newstoggle" hidden><a href="#news" id="news-more">Show more</a></p>
+                <script>
+                  (function () {
+                    var list = document.querySelector('ul.news[data-collapse]');
+                    if (!list) return;
+                    var keep = parseInt(list.getAttribute('data-collapse'), 10) || 3;
+                    var items = list.children;
+                    if (items.length <= keep) return;
+                    var toggle = document.querySelector('.newstoggle');
+                    var link = document.getElementById('news-more');
+                    var open = false;
+                    function render() {
+                      for (var i = keep; i < items.length; i++) items[i].hidden = !open;
+                      link.textContent = open ? 'Show less' : 'Show more';
+                    }
+                    link.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      open = !open;
+                      render();
+                    });
+                    toggle.hidden = false;
+                    render();
+                  })();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle">
+                <h2 id="papers">Selected Papers 📃</h2>
               </td>
             </tr>
           </tbody></table>
@@ -51,10 +113,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/mofa.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/mofa.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                MOFA-Video: Controllable Image Animation via Generative Motion Field Adaptions in Frozen Image-to-Video Diffusion Model
+                <span class="papertitle">MOFA-Video: Controllable Image Animation via Generative Motion Field Adaptions in Frozen Image-to-Video Diffusion Model</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -78,10 +140,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/Anicrafter.jpg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/Anicrafter.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models
+                <span class="papertitle">AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>, 
@@ -101,7 +163,7 @@
                 <a href="https://arxiv.org/abs/2505.20255">paper</a> / 
                 <a href="https://github.com/MyNiuuu/AniCrafter">code</a>
                 <br>
-                We leverage "3DGS Avatar + Background Video" as guidance for the video diffusion model to insert and animate anyone into any scene following given motion sequence.
+                We leverage "3DGS Avatar + Background Video" as hybrid guidance for the video diffusion model to insert and animate anyone into any scene following given motion sequence.
               </td>
             </tr>	
 
@@ -109,10 +171,10 @@
 
             <!-- <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/visionary.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/visionary.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Visionary: The World Model Carrier Built on WebGPU-Powered Gaussian Splatting Platform
+                <span class="papertitle">Visionary: The World Model Carrier Built on WebGPU-Powered Gaussian Splatting Platform</span>
                 <br>
                 <em>
                   Yuning Gong, Yifei Liu, Yifan Zhan, <strong>Muyao Niu</strong>, Xueying Li, Yuanjun Liao, Jiaming Chen, Yuanyuan Gao, Jiaqi Chen, Minming Chen, Li Zhou, Yuning Zhang, Wei Wang, Xiaoqing Hou, Huaxi Huang, Shixiang Tang, Le Ma, Dingwen Zhang, Xue Yang, Junchi Yan, Yanchi Zhang, Yinqiang Zheng, Xiao Sun, Zhihang Zhong
@@ -133,10 +195,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/baga.jpg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/baga.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                MAD-Avatar: Motion-Aware Animatable Gaussian Avatars Deblurring
+                <span class="papertitle">MAD-Avatar: Motion-Aware Animatable Gaussian Avatars Deblurring</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>, 
@@ -163,10 +225,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/3DarkFusion.jpeg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/3DarkFusion.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                3DarkFusion: Toward Robust and 3D-Aware RGB-NIR Imaging in the Dark
+                <span class="papertitle">3DarkFusion: Toward Robust and 3D-Aware RGB-NIR Imaging in the Dark</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>, 
@@ -181,22 +243,48 @@
                 <br>
                   <em>ACM MM</em>, 2026
                 <br>
-                <a href="">paper</a> / 
-                <a href="">code</a>
+                <a href="https://arxiv.org/abs/2607.29684">paper</a> / 
+                <a href="https://github.com/MyNiuuu/3DarkFusion">code</a>
                 <br>
                 3DarkFusion is a novel RGB-NIR fusion framework that leverages the complementary information from RGB and NIR images to achieve robust and 3D-aware imaging under extremely low-light conditions.
               </td>
             </tr>	
 
+
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/thumbs/RSNeRF.jpg' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <span class="papertitle">RS-NeRF: Neural Radiance Fields from Rolling Shutter Images</span>
+                <br>
+                <em>
+                  <strong>Muyao Niu</strong>,
+                  Tong Chen,
+                  Yifan Zhan,
+                  Zhuoxiao Li,
+                  Xiang Ji,
+                  Yinqiang Zheng
+                </em>
+                <br>
+                  <em>ECCV</em>, 2024
+                <br>
+                <a href="https://arxiv.org/abs/2407.10267">paper</a> / 
+                <a href="https://github.com/MyNiuuu/RS-NeRF">code</a>
+                <br>
+                We improve NeRF to consider the RS distortions with two technologies: camera trajectory smoothness regularization and multi-sampling strategy.
+              </td>
+            </tr>
             
 
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/cvpr2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/cvpr2023.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Visibility Constrained Wide-band Illumination Spectrum Design for Seeing-in-the-Dark
+                <span class="papertitle">Visibility Constrained Wide-band Illumination Spectrum Design for Seeing-in-the-Dark</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -215,12 +303,61 @@
             </tr>
 
 
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/thumbs/MM2023.jpg' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                  <span class="papertitle">Physics-Based Adversarial Attack on Near-Infrared Human Detector for Nighttime Surveillance Camera Systems</span>
+                <br>
+                <em>
+                  <strong>Muyao Niu</strong>,
+                  Zhuoxiao Li
+                  Yifan Zhan,
+                  Huy H. Nguyen,
+                  Isao Echizen,
+                  Yinqiang Zheng
+                </em>
+                <br>
+                  <em>ACM MM</em>, 2023
+                <br>
+                <a href="https://dl.acm.org/doi/10.1145/3581783.3612082">paper</a> / 
+                <a href="https://github.com/MyNiuuu/AdvNIR">code</a>
+                <br>
+                We introduced an innovative approach that passively manipulates the intensity distribution of NIR images and developed a 3D-aware, black-box attack algorithm to target deep learning-based NIR-powered human detection systems.
+              </td>
+            </tr>	
+
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
+                <img src='images/thumbs/iccv2023.jpg' style="max-width: 100%; width: 100%;">
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <span class="papertitle">NIR-assisted Video Enhancement via Unpaired 24-hour Data</span>
+                <br>
+                <em>
+                  <strong>Muyao Niu</strong>,
+                  Zhihang Zhong,
+                  Yinqiang Zheng
+                </em>
+                <br>
+                  <em>ICCV</em>, 2023
+                <br>
+                <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Niu_NIR-assisted_Video_Enhancement_via_Unpaired_24-hour_Data_ICCV_2023_paper.pdf">paper</a> / 
+                <a href="https://github.com/MyNiuuu/NVEU">code</a>
+                <br>
+                We addressed the issue of collecting data for utilizing NIR images to improve low-light VIS videos. Physiscs-inspired algorithms are designed to simulate pseudo paired data of NIR and VIS images, simulating day-to-night situations. We then trained an enhancement network using the generated pseudo data.
+              </td>
+            </tr>
+
+
             
 
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Full Publication List (chronological)</h2>
+                <h2 id="publications">Full Publication List 📚</h2>
               </td>
             </tr>
           </tbody></table>
@@ -230,10 +367,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/Anicrafter.jpg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/Anicrafter.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models
+                <span class="papertitle">AniCrafter: Customizing Realistic Human-Centric Animation via Avatar-Background Conditioning in Video Diffusion Models</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>, 
@@ -253,7 +390,7 @@
                 <a href="https://arxiv.org/abs/2505.20255">paper</a> / 
                 <a href="https://github.com/MyNiuuu/AniCrafter">code</a>
                 <br>
-                We leverage "3DGS Avatar + Background Video" as guidance for the video diffusion model to insert and animate anyone into any scene following given motion sequence.
+                We leverage "3DGS Avatar + Background Video" as hybrid guidance for the video diffusion model to insert and animate anyone into any scene following given motion sequence.
               </td>
             </tr>
 
@@ -263,10 +400,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/3DarkFusion.jpeg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/3DarkFusion.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                3DarkFusion: Toward Robust and 3D-Aware RGB-NIR Imaging in the Dark
+                <span class="papertitle">3DarkFusion: Toward Robust and 3D-Aware RGB-NIR Imaging in the Dark</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>, 
@@ -281,8 +418,8 @@
                 <br>
                   <em>ACM MM</em>, 2026
                 <br>
-                <a href="">paper</a> / 
-                <a href="">code</a>
+                <a href="https://arxiv.org/abs/2607.29684">paper</a> / 
+                <a href="https://github.com/MyNiuuu/3DarkFusion">code</a>
                 <br>
                 3DarkFusion is a novel RGB-NIR fusion framework that leverages the complementary information from RGB and NIR images to achieve robust and 3D-aware imaging under extremely low-light conditions.
               </td>
@@ -294,10 +431,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/surpriseforcing.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/surpriseforcing.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Surprise Forcing: What to Remember, When to Skip in Long Video Generation
+                <span class="papertitle">Surprise Forcing: What to Remember, When to Skip in Long Video Generation</span>
                 <br>
                 <em>
                 Shuwei Shi, Zhen Li, 
@@ -306,12 +443,7 @@
                 <br>
                   <em>ECCV</em>, 2026
                 <br>
-                <!-- <a href="">project page</a> /
-                <a href="">paper</a> / 
-                <a href="">code</a> -->
-                <a href="">project page</a> /
-                <a href="">paper</a> / 
-                <a href="">code</a>
+                <a href="https://arxiv.org/abs/2607.18436">paper</a>
                 <br>
                 Surprise Forcing is a training-free framework that uses "surprise" to keep the most informative frames discarded by the sliding-window KV cache (via a surprise-aware memory bank) and to adaptively cut denoising steps for easy chunks—preserving long-range scene consistency and narrative coherence in autoregressive diffusion long-video generation.
               </td>
@@ -321,10 +453,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/spacedg.jpg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/spacedg.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                SpaceDG: Benchmarking Spatial Intelligence under Visual Degradation
+                <span class="papertitle">SpaceDG: Benchmarking Spatial Intelligence under Visual Degradation</span>
                 <br>
                 <em>
                 Xiaolong Zhou, Yifei Liu, Ziyang Gong, Jiarui Li, Qiyue Zhao, 
@@ -344,10 +476,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/composia.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/composia.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Composing Driving Worlds through Disentangled Control for Adversarial Scenario Generation
+                <span class="papertitle">Composing Driving Worlds through Disentangled Control for Adversarial Scenario Generation</span>
                 <br>
                 <em>
                 Yifan Zhan*,
@@ -375,10 +507,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/baga.jpg' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/baga.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                MAD-Avatar: Motion-Aware Animatable Gaussian Avatars Deblurring
+                <span class="papertitle">MAD-Avatar: Motion-Aware Animatable Gaussian Avatars Deblurring</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>, 
@@ -404,10 +536,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/visionary.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/visionary.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Visionary: The World Model Carrier Built on WebGPU-Powered Gaussian Splatting Platform
+                <span class="papertitle">Visionary: The World Model Carrier Built on WebGPU-Powered Gaussian Splatting Platform</span>
                 <br>
                 <em>
                   Yuning Gong, Yifei Liu, Yifan Zhan, <strong>Muyao Niu</strong>, Xueying Li, Yuanjun Liao, Jiaming Chen, Yuanyuan Gao, Jiaqi Chen, Minming Chen, Li Zhou, Yuning Zhang, Wei Wang, Xiaoqing Hou, Huaxi Huang, Shixiang Tang, Le Ma, Dingwen Zhang, Xue Yang, Junchi Yan, Yanchi Zhang, Yinqiang Zheng, Xiao Sun, Zhihang Zhong
@@ -424,45 +556,40 @@
             </tr>
 
 
+
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/allinone_compress.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/R3.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                All-in-One Transferring Image Compression from Human Perception to Multi-Machine Perception
+                <span class="papertitle">R3-avatar: Record and retrieve temporal codebook for reconstructing photorealistic human avatarsPreprint</span>
                 <br>
                 <em>
-                  Jiancheng Zhao, 
-                  Xiang Ji, 
-                  Zhuoxiao Li, 
-                  Zunian Wan, 
-                  Weihang Ran, 
-                  Mingze Ma, 
-                  <strong>Muyao Niu</strong>, 
                   Yifan Zhan, 
-                  Cheng-Ching Tseng, 
+                  Wangze Xu, 
+                  Qingtian Zhu, 
+                  <strong>Muyao Niu</strong>, 
+                  Mingze Ma, 
+                  Yifei Liu, 
+                  Zhihang Zhong, 
+                  Xiao Sun, 
                   Yinqiang Zheng
                 </em>
                 <br>
                   <em>arXiv</em>, 2025
                 <br>
-                <a href="https://arxiv.org/abs/2504.12899">paper</a> / 
-                code
+                <a href="https://arxiv.org/abs/2503.12751">paper</a>
                 <br>
-                An asymmetric adaptor framework bridges learned image compression and multi-task vision with a single compact model.
+                We present R3-Avatar, incorporating a temporal codebook, to overcome the inability of human avatars to be both animatable and of high-fidelity rendering quality. 
               </td>
             </tr>	
 
-            
-
-
-
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/tree_nerv.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/tree_nerv.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Tree-NeRV: A Tree-Structured Neural Representation for Efficient Non-Uniform Video Encoding
+                <span class="papertitle">Tree-NeRV: A Tree-Structured Neural Representation for Efficient Non-Uniform Video Encoding</span>
                 <br>
                 <em>
                   Jiancheng Zhao, 
@@ -477,8 +604,7 @@
                 <br>
                   <em>ICCV</em>, 2025
                 <br>
-                <a href="https://arxiv.org/abs/2504.12899">paper</a> / 
-                code
+                <a href="https://arxiv.org/abs/2504.12899">paper</a>
                 <br>
                 We propose Tree-NeRV, a novel tree-structured feature representation for efficient and adaptive video encoding. Unlike conventional approaches, Tree-NeRV organizes feature representations within a Binary Search Tree (BST), enabling non-uniform sampling along the temporal axis. 
               </td>
@@ -492,10 +618,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/tomie.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/tomie.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                ToMiE: Towards Explicit Exoskeleton for the Reconstruction of Complicated 3D Human Avatars
+                <span class="papertitle">ToMiE: Towards Explicit Exoskeleton for the Reconstruction of Complicated 3D Human Avatars</span>
                 <br>
                 <em>
                   Yifan Zhan, 
@@ -520,10 +646,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/AAAI25.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/AAAI25.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Adversarial Attacks on Event-Based Pedestrian Detectors: A Physical Approach
+                <span class="papertitle">Adversarial Attacks on Event-Based Pedestrian Detectors: A Physical Approach</span>
                 <br>
                 <em>
                   Guixu Lin, 
@@ -537,10 +663,7 @@
                 <br>
                   <em>AAAI</em>, 2025
                 <br>
-                <!-- <a href="">project page</a> / 
-                <a href="">paper</a> -->
-                <a href="https://arxiv.org/abs/2503.00377">paper page</a> / 
-                code
+                <a href="https://arxiv.org/abs/2503.00377">paper</a>
                 <br>
                 We developed an end-to-end adversarial framework for event-driven pedestrian detection, framing the design of adversarial clothing textures as a 2D texture optimization problem.
               </td>
@@ -549,10 +672,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/StereoCrafter.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/StereoCrafter.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                StereoCrafter: Diffusion-based Generation of Long and High-fidelity Stereoscopic 3D from Monocular Videos
+                <span class="papertitle">StereoCrafter: Diffusion-based Generation of Long and High-fidelity Stereoscopic 3D from Monocular Videos</span>
                 <br>
                 <em>
                   Sijie Zhao*,
@@ -566,7 +689,7 @@
                   Ying Shan
                 </em>
                 <br>
-                  <em>arXiv (Technical Report)</em>, 2024
+                  <em>Technical Report</em>, 2024
                 <br>
                 <a href="https://stereocrafter.github.io/">project page</a> / 
                 <a href="https://arxiv.org/abs/2409.07447">paper</a>
@@ -579,10 +702,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/mofa.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/mofa.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                MOFA-Video: Controllable Image Animation via Generative Motion Field Adaptions in Frozen Image-to-Video Diffusion Model
+                <span class="papertitle">MOFA-Video: Controllable Image Animation via Generative Motion Field Adaptions in Frozen Image-to-Video Diffusion Model</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -606,10 +729,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/CVVAE.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/CVVAE.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                CV-VAE: A Compatible Video VAE for Latent Generative Video Models
+                <span class="papertitle">CV-VAE: A Compatible Video VAE for Latent Generative Video Models</span>
                 <br>
                 <em>
                   Sijie Zhao,
@@ -635,10 +758,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/RSNeRF.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/RSNeRF.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                RS-NeRF: Neural Radiance Fields from Rolling Shutter Images
+                <span class="papertitle">RS-NeRF: Neural Radiance Fields from Rolling Shutter Images</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -660,10 +783,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/KFDNeRF.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/KFDNeRF.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                KFD-NeRF: Rethinking Dynamic NeRF with Kalman Filter
+                <span class="papertitle">KFD-NeRF: Rethinking Dynamic NeRF with Kalman Filter</span>
                 <br>
                 <em>
                   Yifan Zhan, 
@@ -687,10 +810,10 @@
             
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/MM2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/MM2023.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                  Physics-Based Adversarial Attack on Near-Infrared Human Detector for Nighttime Surveillance Camera Systems
+                  <span class="papertitle">Physics-Based Adversarial Attack on Near-Infrared Human Detector for Nighttime Surveillance Camera Systems</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -712,10 +835,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/iccv2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/iccv2023.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                NIR-assisted Video Enhancement via Unpaired 24-hour Data
+                <span class="papertitle">NIR-assisted Video Enhancement via Unpaired 24-hour Data</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -734,10 +857,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/cvpr2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/cvpr2023.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Visibility Constrained Wide-band Illumination Spectrum Design for Seeing-in-the-Dark
+                <span class="papertitle">Visibility Constrained Wide-band Illumination Spectrum Design for Seeing-in-the-Dark</span>
                 <br>
                 <em>
                   <strong>Muyao Niu</strong>,
@@ -757,10 +880,10 @@
 
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/TIP2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/TIP2023.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Region Assisted Sketch Colorization
+                <span class="papertitle">Region Assisted Sketch Colorization</span>
                 <br>
                 <em>
                   Ning Wang*,
@@ -783,10 +906,10 @@
             
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px;width:25%;vertical-align:middle;text-align:center">
-                <img src='images/PR2023.png' style="max-width: 100%; width: 100%;">
+                <img src='images/thumbs/PR2023.jpg' style="max-width: 100%; width: 100%;">
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                Coloring anime line art videos with transformation region enhancement network
+                <span class="papertitle">Coloring anime line art videos with transformation region enhancement network</span>
                 <br>
                 <em>
                   Ning Wang*, 
@@ -808,42 +931,13 @@
             </tr>
           
 
-
-
-
-
-            <!-- <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-                <td style="padding:20px;width:100%;vertical-align:middle">
-                  <h2><a href="./index_full.html" style="font-size: 20px;">Full List</a></h2>
-                </td>
-              </tr>
-            </tbody></table> -->
-
-            <!-- <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Interns</h2>
-                <p>
-                <em>2024.08 - 2025.07</em>: Computer Vision Research Intern at Shanghai AI Lab, mentored by <a href="https://zzh-tech.github.io/">Zhihang Zhong</a> and <a href="https://jimmysuen.github.io/">Xiao Sun</a>.
-                <br>
-                <em>2023.12 - 2024.06</em>: Computer Vision Research Intern at Computer Vision Center (CVC), Tencent AI Lab, mentored by <a href="http://vinthony.github.io">Xiaodong Cun</a>.
-                <br>
-                </p>
-              </td>
-            </tr>
-          </tbody></table> -->
-
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
-              <h2>Awards/Scholarships</h2>
+              <h2 id="awards">Awards 🏆</h2>
               <p>
                 BOOST NAIS Special Research Scholarship (3,900,000 JPY / year), The University of Tokyo, <em>2024.10 - 2027.09</em> <br>
                 WING-CFS Special Research Assistant Scholarship (2,160,000 JPY / year), The University of Tokyo, <em>2023.04 - 2024.09</em> <br>
-                <!-- Teijin Scholarship, <em>2023.04 - 2024.09</em> <br> -->
-                <!-- JASSO Scholarship, <em>2022.10 - 2023.04</em> <br> -->
-                <!-- National Scholarship of China (Undergraduate Students), <em>2019.09 - 2021.08</em> <br> -->
               </p>
             </td>
           </tr>
@@ -856,15 +950,12 @@
 
 <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=g-9X4bkMwGxMP6ZUofQvykKl_zZabaIz2JT2h2Wcxwg&cl=ffffff&w=300"></script>
 
-    <!-- <tr onmouseout="zipnerf_stop()" onmouseover="zipnerf_start()"  bgcolor="#ffffd0"> -->
-    <!-- </tr> -->
-
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:0px">
                 <br>
                 <p style="text-align:center;font-size:small;">
-                  The template comes from the personal website of <a href="https://jonbarron.info/">Jon Barron</a>.
+                  The page is modified based on the template comes from the personal website of <a href="https://jonbarron.info/">Jon Barron</a>.
                 </p>
               </td>
             </tr>

@@ -1,1 +1,8 @@
+# macOS
 .DS_Store
+
+# local tooling / scratch
+.claude/
+
+# backups made while restyling the page
+backup*/
