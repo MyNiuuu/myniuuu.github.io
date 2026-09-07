@@ -211,15 +211,15 @@ h2 {
   text-decoration: none;
 }
 
-.research-works a:nth-of-type(-n+3) {
+.research-works a.first-author {
   text-decoration: underline;
   text-decoration-color: rgba(20, 86, 143, .38);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
-.research-works a:nth-of-type(-n+3):hover,
-.research-works a:nth-of-type(-n+3):focus {
+.research-works a.first-author:hover,
+.research-works a.first-author:focus {
   text-decoration-color: currentColor;
 }
 
