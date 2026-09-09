@@ -36,7 +36,7 @@
         <ul class="research-list">
           <li>
             <p><b>Generative Modeling (video &amp; 3D):</b> I explore video and 3D representations for controllable generation. I believe that hybrid representations are the future of generative modeling.</p>
-            <p class="research-works"><span class="works-label">Works:</span> <a class="first-author" href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a>, <a class="first-author" href="https://alaya-lab.github.io/WorldSculpt/">WorldSculpt</a>, <a class="first-author" href="https://myniuuu.github.io/AniCrafter">AniCrafter</a>, <a class="first-author" href="https://dl.acm.org/doi/abs/10.1109/TIP.2023.3326682">RASC</a>, <a href="https://yifever20002.github.io/CompoSIA/">CompoSIA</a>, <a href="https://ailab-cvc.github.io/cvvae/index.html">CV-VAE</a>, <a href="https://stereocrafter.github.io/">StereoCrafter</a>, <a href="https://arxiv.org/abs/2607.18436">Surprise-Forcing</a>, etc.</p>
+            <p class="research-works"><span class="works-label">Works:</span> <a class="first-author" href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a>, <a class="first-author" href="https://alaya-lab.github.io/WorldSculpt/">WorldSculpt</a>, <a class="first-author" href="https://myniuuu.github.io/AniCrafter">AniCrafter</a>, <a class="first-author" href="https://dl.acm.org/doi/abs/10.1109/TIP.2023.3326682">RASC</a>, <a href="https://alaya-lab.github.io/pwm/">Programmable-WM</a>, <a href="https://yifever20002.github.io/CompoSIA/">CompoSIA</a>, <a href="https://ailab-cvc.github.io/cvvae/index.html">CV-VAE</a>, <a href="https://stereocrafter.github.io/">StereoCrafter</a>, <a href="https://arxiv.org/abs/2607.18436">Surprise-Forcing</a>, etc.</p>
           </li>
           <li>
             <p><b>NeRF &amp; 3DGS:</b> I study 3D reconstruction from various observations by jointly modeling scene structure and imaging process.</p>
@@ -56,7 +56,7 @@
       <section class="section" aria-labelledby="news">
         <h2 id="news">News 🔥</h2>
         <ul class="news" id="news-list" data-collapse="3">
-                  <li><span class="newsdate">2026.09</span>We release <a href="https://alaya-lab.github.io/WorldSculpt/">WorldSculpt</a>, feel free to try it!</li>
+                  <li><span class="newsdate">2026.09</span>We release <a href="https://alaya-lab.github.io/WorldSculpt/">WorldSculpt</a> and <a href="https://alaya-lab.github.io/pwm/">Programmable-WM</a>, feel free to check them out!</li>
                   <li><span class="newsdate">2026.07</span><a href="https://myniuuu.github.io/AniCrafter">AniCrafter</a> and <a href="https://github.com/MyNiuuu/3DarkFusion">3DarkFusion</a> are accepted to ACM MM 2026!</li>
                   <li><span class="newsdate">2026.06</span><a href="https://arxiv.org/abs/2607.18436">Surprise Forcing</a> and <a href="https://yifever20002.github.io/CompoSIA/">CompoSIA</a> are accepted to ECCV 2026!</li>
                   <li><span class="newsdate">2026.02</span><a href="https://github.com/MyNiuuu/MAD-Avatar">MAD-Avatar</a> is accepted to CVPR 2026!</li>
@@ -172,7 +172,7 @@
           <div class="paper-thumbnail"><img loading="lazy" alt="Physics-Based Adversarial Attack on Near-Infrared Human Detector for Nighttime Surveillance Camera Systems — overview" src='images/thumbs/MM2023.jpg'></div>
           <div class="paper-content">
             <h3 class="papertitle">Physics-Based Adversarial Attack on Near-Infrared Human Detector for Nighttime Surveillance Camera Systems</h3>
-            <p class="paper-authors"><strong>Muyao Niu</strong>, Zhuoxiao Li Yifan Zhan, Huy H. Nguyen, Isao Echizen, Yinqiang Zheng</p>
+            <p class="paper-authors"><strong>Muyao Niu</strong>, Zhuoxiao Li, Yifan Zhan, Huy H. Nguyen, Isao Echizen, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ACM MM</em>, 2023</p>
             <p class="paper-links"><a href="https://dl.acm.org/doi/10.1145/3581783.3612082">paper</a> / <a href="https://github.com/MyNiuuu/AdvNIR">code</a></p>
             <p class="paper-summary">We introduced an innovative approach that passively manipulates the intensity distribution of NIR images and developed a 3D-aware, black-box attack algorithm to target deep learning-based NIR-powered human detection systems.</p>
@@ -193,12 +193,23 @@
       <section class="section full-publications" aria-labelledby="publications">
         <h2 id="publications">Full Publication List 📚</h2>
         <article class="paper">
+          <div class="paper-thumbnail"><img loading="lazy" alt="Programmable World Model — overview" src="images/pwm.jpg"></div>
+          <div class="paper-content">
+            <h3 class="papertitle">Programmable World Model</h3>
+            <p class="paper-authors">Zheng-Hui Huang*, Guixu Lin*, Jiacheng Lin, Yi-Chuan Huang, Ruihan Yu, <strong>Muyao Niu</strong>, Siqi Yang, Yu-Lun Liu, Yung-Yu Chuang, Kaipeng Zhang, Zhixiang Wang</p>
+            <p class="paper-venue"><em>Technical Report</em>, 2026</p>
+            <p class="paper-links"><a href="https://alaya-lab.github.io/pwm/">project page</a> / <a href="">paper</a>/ <a href="https://github.com/AlayaLab/pwm">code</a></p>
+            <p class="paper-summary">An explicit-state-driven framework for programmable generative worlds: a state executor maintains a canonical world state and advances it under player actions and world rules; a deterministic compiler projects the state, represented as state-augmented 3D OBBs, into pixel-aligned controls; and a video model renders the observation.</p>
+          </div>
+        </article>
+        <article class="paper">
           <div class="paper-thumbnail"><img loading="lazy" alt="WorldSculpt: Generating Compositional Worlds from Grounded Videos — overview" src='images/WorldSculpt.webp'></div>
           <div class="paper-content">
             <h3 class="papertitle">WorldSculpt: Generating Compositional Worlds from Grounded Videos</h3>
             <p class="paper-authors"><strong>Muyao Niu</strong>, Jixuan He, Ruihan Yu, Lian Fu, Yonghao Yu, Zheng-Hui Huang, Yifan Zhan, Fengbo Lan, Yongtao Ge, Yinqiang Zheng, Kaipeng Zhang, Zhixiang Wang</p>
             <p class="paper-venue"><em>Technical Report</em>, 2026</p>
-            <p class="paper-links"><a href="https://alaya-lab.github.io/WorldSculpt/">project page</a> / <a href="">paper</a> / <a href="https://github.com/AlayaLab/WorldSculpt">code</a></p>
+            <p class="paper-links"><a href="https://alaya-lab.github.io/WorldSculpt/">project page</a> / <a href="https://arxiv.org/abs/2609.05416">paper</a> / <a href="https://github.com/AlayaLab/WorldSculpt">code</a></p>
+            <p class="paper-summary">WorldSculpt produces a compositional mesh representation for very complex scenes consisting of hundreds of individual objects given grounded RGB videos.</p>
           </div>
         </article>
         <article class="paper">
@@ -208,6 +219,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Mingdeng Cao, Yifan Zhan, Qingtian Zhu, Weihang Ran, Yanhong Zeng, Xiao Sun, Zhihang Zhong, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ACM MM</em>, 2026</p>
             <p class="paper-links"><a href="https://myniuuu.github.io/AniCrafter">project page</a> / <a href="https://arxiv.org/abs/2505.20255">paper</a> / <a href="https://github.com/MyNiuuu/AniCrafter">code</a></p>
+            <p class="paper-summary">We leverage "3DGS Avatar + Background Video" as hybrid guidance for the video diffusion model to insert and animate anyone into any scene following given motion sequence.</p>
           </div>
         </article>
         <article class="paper">
@@ -217,6 +229,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Mingze Ma, Yifan Zhan, Qingtian Zhu, Zhihang Zhong, Wei Guo, Chang Wen Chen, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ACM MM</em>, 2026</p>
             <p class="paper-links"><a href="https://arxiv.org/abs/2607.29684">paper</a> / <a href="https://github.com/MyNiuuu/3DarkFusion">code</a></p>
+            <p class="paper-summary">3DarkFusion is a novel RGB-NIR fusion framework that leverages the complementary information from RGB and NIR images to achieve robust and 3D-aware imaging under extremely low-light conditions.</p>
           </div>
         </article>
         <article class="paper">
@@ -256,6 +269,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Yifan Zhan, Qingtian Zhu, Zhuoxiao Li, Wei Wang, Zhihang Zhong, Xiao Sun, Yinqiang Zheng</p>
             <p class="paper-venue"><em>CVPR</em>, 2026</p>
             <p class="paper-links"><a href="https://arxiv.org/abs/2411.16758">paper</a> / <a href="https://github.com/MyNiuuu/MAD-Avatar">code</a></p>
+            <p class="paper-summary">We introduce an innovative method for deriving sharp intrinsic 3D human Gaussian avatars from blurry videos via 3D human motion model and the physics-based blur formation model.</p>
           </div>
         </article>
         <article class="paper">
@@ -271,7 +285,7 @@
         <article class="paper">
           <div class="paper-thumbnail"><img loading="lazy" alt="R3-avatar: Record and retrieve temporal codebook for reconstructing photorealistic human avatars — overview" src='images/thumbs/R3.jpg'></div>
           <div class="paper-content">
-            <h3 class="papertitle">R3-avatar: Record and retrieve temporal codebook for reconstructing photorealistic human avatarsPreprint</h3>
+            <h3 class="papertitle">R3-avatar: Record and retrieve temporal codebook for reconstructing photorealistic human avatars</h3>
             <p class="paper-authors">Yifan Zhan, Wangze Xu, Qingtian Zhu, <strong>Muyao Niu</strong>, Mingze Ma, Yifei Liu, Zhihang Zhong, Xiao Sun, Yinqiang Zheng</p>
             <p class="paper-venue"><em>arXiv</em>, 2025</p>
             <p class="paper-links"><a href="https://arxiv.org/abs/2503.12751">paper</a></p>
@@ -325,6 +339,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Xiaodong Cun, Xintao Wang, Yong Zhang, Ying Shan, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ECCV</em>, 2024</p>
             <p class="paper-links"><a href="https://myniuuu.github.io/MOFA_Video/">project page</a> / <a href="https://arxiv.org/abs/2405.20222">paper</a> / <a href="https://github.com/MyNiuuu/MOFA-Video">code</a></p>
+            <p class="paper-summary">We introduce MOFA-Video to adapt motions from different domains to the frozen Video Diffusion Model. MOFA-Video can effectively animate a single image using various types of control signals, including trajectories, keypoint sequences, and their combinations.</p>
           </div>
         </article>
         <article class="paper">
@@ -344,6 +359,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Tong Chen, Yifan Zhan, Zhuoxiao Li, Xiang Ji, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ECCV</em>, 2024</p>
             <p class="paper-links"><a href="https://arxiv.org/abs/2407.10267">paper</a> / <a href="https://github.com/MyNiuuu/RS-NeRF">code</a></p>
+            <p class="paper-summary">We improve NeRF to consider the RS distortions with two technologies: camera trajectory smoothness regularization and multi-sampling strategy.</p>
           </div>
         </article>
         <article class="paper">
@@ -363,6 +379,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Zhuoxiao Li, Yifan Zhan, Huy H. Nguyen, Isao Echizen, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ACM MM</em>, 2023</p>
             <p class="paper-links"><a href="https://dl.acm.org/doi/10.1145/3581783.3612082">paper</a> / <a href="https://github.com/MyNiuuu/AdvNIR">code</a></p>
+            <p class="paper-summary">We introduced an innovative approach that passively manipulates the intensity distribution of NIR images and developed a 3D-aware, black-box attack algorithm to target deep learning-based NIR-powered human detection systems.</p>
           </div>
         </article>
         <article class="paper">
@@ -372,6 +389,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Zhihang Zhong, Yinqiang Zheng</p>
             <p class="paper-venue"><em>ICCV</em>, 2023</p>
             <p class="paper-links"><a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Niu_NIR-assisted_Video_Enhancement_via_Unpaired_24-hour_Data_ICCV_2023_paper.pdf">paper</a> / <a href="https://github.com/MyNiuuu/NVEU">code</a></p>
+            <p class="paper-summary">We addressed the issue of collecting data for utilizing NIR images to improve low-light VIS videos. Physics-inspired algorithms are designed to simulate pseudo paired data of NIR and VIS images, simulating day-to-night situations. We then trained an enhancement network using the generated pseudo data.</p>
           </div>
         </article>
         <article class="paper">
@@ -381,6 +399,7 @@
             <p class="paper-authors"><strong>Muyao Niu</strong>, Zhuoxiao Li, Zhihang Zhong, Yinqiang Zheng</p>
             <p class="paper-venue"><em>CVPR</em>, 2023</p>
             <p class="paper-links"><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Niu_Visibility_Constrained_Wide-Band_Illumination_Spectrum_Design_for_Seeing-in-the-Dark_CVPR_2023_paper.pdf">paper</a> / <a href="https://github.com/MyNiuuu/VCSD">code</a></p>
+            <p class="paper-summary">We designed an optimal illumination spectrum in the VIS-NIR range by considering human vision constraints, which significantly improves translation performance. A fully differentiable model was proposed, which includes the imaging process, human visual perception, and the enhancement network.</p>
           </div>
         </article>
         <article class="paper">
@@ -416,9 +435,6 @@
       </section>
 
       <footer class="footer">
-        <div class="visitor-map">
-          <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=g-9X4bkMwGxMP6ZUofQvykKl_zZabaIz2JT2h2Wcxwg&cl=ffffff&w=300"></script>
-        </div>
         <p>The page is modified based on the template comes from the personal website of <a href="https://jonbarron.info/">Jon Barron</a>.</p>
       </footer>
     </main>
