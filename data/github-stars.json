@@ -1,0 +1,117 @@
+{
+  "updated_at": "2026-10-11T10:38:34.427255+00:00",
+  "repository_count": 22,
+  "total_stars": 3214,
+  "repositories": {
+    "ailab-cvc/cv-vae": {
+      "id": 807517499,
+      "name": "AILab-CVC/CV-VAE",
+      "stars": 286
+    },
+    "alayalab/edithero": {
+      "id": 1396173001,
+      "name": "AlayaLab/EditHero",
+      "stars": 22
+    },
+    "alayalab/kaininja": {
+      "id": 1370844777,
+      "name": "AlayaLab/KaiNinja",
+      "stars": 47
+    },
+    "alayalab/pwm": {
+      "id": 1358009970,
+      "name": "AlayaLab/PWM",
+      "stars": 201
+    },
+    "alayalab/worldsculpt": {
+      "id": 1354411229,
+      "name": "AlayaLab/WorldSculpt",
+      "stars": 333
+    },
+    "joseph-lin-tech/event_attack_physics": {
+      "id": 1121568913,
+      "name": "Joseph-LIN-Tech/event_attack_physics",
+      "stars": 4
+    },
+    "myniuuu/3darkfusion": {
+      "id": 1299451435,
+      "name": "MyNiuuu/3DarkFusion",
+      "stars": 6
+    },
+    "myniuuu/advnir": {
+      "id": 671060297,
+      "name": "MyNiuuu/AdvNIR",
+      "stars": 12
+    },
+    "myniuuu/anicrafter": {
+      "id": 990030926,
+      "name": "MyNiuuu/AniCrafter",
+      "stars": 144
+    },
+    "myniuuu/mad-avatar": {
+      "id": 892535497,
+      "name": "MyNiuuu/MAD-Avatar",
+      "stars": 28
+    },
+    "myniuuu/mofa-video": {
+      "id": 808091003,
+      "name": "MyNiuuu/MOFA-Video",
+      "stars": 768
+    },
+    "myniuuu/nveu": {
+      "id": 675948996,
+      "name": "MyNiuuu/NVEU",
+      "stars": 6
+    },
+    "myniuuu/rs-nerf": {
+      "id": 828503660,
+      "name": "MyNiuuu/RS-NeRF",
+      "stars": 18
+    },
+    "myniuuu/vcsd": {
+      "id": 617284416,
+      "name": "MyNiuuu/VCSD",
+      "stars": 51
+    },
+    "tencentarc/stereocrafter": {
+      "id": 908958874,
+      "name": "TencentARC/StereoCrafter",
+      "stars": 528
+    },
+    "visionary-laboratory/spacedg": {
+      "id": 1232593062,
+      "name": "Visionary-Laboratory/SpaceDG",
+      "stars": 31
+    },
+    "visionary-laboratory/visionary": {
+      "id": 1111539438,
+      "name": "Visionary-Laboratory/visionary",
+      "stars": 526
+    },
+    "yifever20002/composia": {
+      "id": 1180420013,
+      "name": "Yifever20002/CompoSIA",
+      "stars": 116
+    },
+    "yifever20002/kfd-nerf": {
+      "id": 827128310,
+      "name": "Yifever20002/KFD-NeRF",
+      "stars": 19
+    },
+    "yifever20002/r3avatars": {
+      "id": 947655640,
+      "name": "Yifever20002/R3Avatars",
+      "stars": 23
+    },
+    "yifever20002/tomie": {
+      "id": 835254104,
+      "name": "Yifever20002/ToMiE",
+      "stars": 44
+    },
+    "zhaojiancheng007/tree-nerv": {
+      "id": 1029421649,
+      "name": "zhaojiancheng007/Tree-NeRV",
+      "stars": 1
+    }
+  }
+}

@@ -1,0 +1,52 @@
+name: Update GitHub stars
+
+on:
+  schedule:
+    # 10:23 JST daily; avoid the busiest start-of-hour scheduling window.
+    - cron: '23 1 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - scripts/update_github_stars.py
+      - .github/workflows/update-github-stars.yml
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: update-github-stars
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - name: Refresh the complete star snapshot
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/update_github_stars.py
+      - name: Commit updated counts
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git add index.html github-stars.html data/github-stars.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Update research repository stars'
+            git push origin "HEAD:$DEFAULT_BRANCH"
+          fi
+      # GITHUB_TOKEN commits do not automatically trigger branch-based Pages builds.
+      # Request the existing Pages build explicitly, including after a failed prior build request.
+      - name: Request GitHub Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds" --silent
