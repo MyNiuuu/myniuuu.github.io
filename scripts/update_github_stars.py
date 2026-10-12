@@ -102,14 +102,12 @@ def render_html(page, snapshot):
         if name is None:
             return article
         repo = snapshot["repositories"][name]
-        number = f'{repo["stars"]:,}'
         repo_name = escape(repo["name"], quote=True)
         badge = (
             f'<a class="paper-stars" href="https://github.com/{repo_name}" '
-            f'aria-label="{repo_name}: {number} GitHub stars" '
-            f'title="{number} GitHub stars · Updated {day} (JST)">'
-            f'<span class="github-star-icon" aria-hidden="true">☆</span>'
-            f'<span>{number}</span></a>'
+            f'aria-label="{repo_name} GitHub stars">'
+            f'<img loading="lazy" src="https://img.shields.io/github/stars/{repo_name}?style=social" '
+            f'alt="{repo_name} GitHub stars" height="16"></a>'
         )
         # New papers only need data-github-repo and their usual paper-links row.
         if "<!-- github-stars:badge:start -->" not in article:

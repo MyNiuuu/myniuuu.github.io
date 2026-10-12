@@ -44,7 +44,8 @@ class GitHubStarsTests(unittest.TestCase):
         self.assertEqual(rendered.count('class="paper-stars"'), 3)
         self.assertIn("<strong>1,234</strong>", rendered)
         self.assertIn('class="github-stars-total" href="github-stars.html"', rendered)
-        self.assertIn("Owner/Zero: 0 GitHub stars", rendered)
+        self.assertIn('src="https://img.shields.io/github/stars/Owner/Zero?style=social"', rendered)
+        self.assertIn('alt="Owner/Zero GitHub stars"', rendered)
         self.assertIn(paper(None), rendered)
         self.assertEqual(stars.render_html(rendered, snapshot), rendered)
 
@@ -98,7 +99,7 @@ class GitHubStarsTests(unittest.TestCase):
             self.assertEqual((root / "index.html").read_text(), edited)
             self.assertEqual((root / "data/github-stars.json").read_text(), "saved snapshot")
 
-    def test_homepage_and_json_show_exactly_the_same_snapshot(self):
+    def test_generated_pages_match_saved_snapshot(self):
         source = (ROOT / "index.html").read_text()
         saved = json.loads((ROOT / "data/github-stars.json").read_text())
         checked = stars.build_snapshot(stars.repositories_in(source), saved["repositories"], saved["updated_at"])
