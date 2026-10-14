@@ -152,13 +152,21 @@ h2 {
 
 .profile-copy { min-width: 0; }
 .profile-copy > p:last-of-type { margin-bottom: 16px; }
-.profile-photo img {
+.profile-photo a {
   display: block;
   width: 196px;
   height: 196px;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 50%;
   box-shadow: 0 0 0 1px var(--rule);
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(var(--photo-zoom, 1));
 }
 
 .contact-links {
@@ -365,7 +373,7 @@ ul.news li {
 @media (max-width: 720px) {
   body { padding: 0 20px 30px; }
   .profile { grid-template-columns: minmax(0, 1fr) 138px; gap: 24px; padding-top: 32px; }
-  .profile-photo img { width: 138px; height: 138px; }
+  .profile-photo a { width: 138px; height: 138px; }
   .name { font-size: 29px; }
   .paper { grid-template-columns: 150px minmax(0, 1fr); gap: 20px; }
   .paper-thumbnail img { height: 115px; }
@@ -375,7 +383,7 @@ ul.news li {
 @media (max-width: 540px) {
   .profile { grid-template-columns: 1fr; gap: 20px; padding-top: 26px; }
   .profile-photo { grid-row: 1; justify-self: center; }
-  .profile-photo img { width: 128px; height: 128px; }
+  .profile-photo a { width: 128px; height: 128px; }
   .name { text-align: center; font-size: 28px; }
   .contact-links { font-size: 14px; }
   .contact-links > span:not(:last-child)::after { margin: 0 8px; }
