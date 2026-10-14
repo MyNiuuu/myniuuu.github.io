@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-13T07:48:08.345822+00:00",
+  "updated_at": "2026-10-14T06:13:01.495065+00:00",
   "repository_count": 22,
-  "total_stars": 3222,
+  "total_stars": 3227,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -11,12 +11,12 @@
     "alayalab/edithero": {
       "id": 1396173001,
       "name": "AlayaLab/EditHero",
-      "stars": 22
+      "stars": 24
     },
     "alayalab/kaininja": {
       "id": 1370844777,
       "name": "AlayaLab/KaiNinja",
-      "stars": 47
+      "stars": 48
     },
     "alayalab/pwm": {
       "id": 1358009970,
@@ -76,7 +76,7 @@
     "tencentarc/stereocrafter": {
       "id": 908958874,
       "name": "TencentARC/StereoCrafter",
-      "stars": 528
+      "stars": 529
     },
     "visionary-laboratory/spacedg": {
       "id": 1232593062,
@@ -86,7 +86,7 @@
     "visionary-laboratory/visionary": {
       "id": 1111539438,
       "name": "Visionary-Laboratory/visionary",
-      "stars": 527
+      "stars": 528
     },
     "yifever20002/composia": {
       "id": 1180420013,
