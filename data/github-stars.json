@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-16T05:55:29.269374+00:00",
+  "updated_at": "2026-10-17T05:39:37.765851+00:00",
   "repository_count": 22,
-  "total_stars": 3234,
+  "total_stars": 3237,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -26,7 +26,7 @@
     "alayalab/worldsculpt": {
       "id": 1354411229,
       "name": "AlayaLab/WorldSculpt",
-      "stars": 341
+      "stars": 342
     },
     "joseph-lin-tech/event_attack_physics": {
       "id": 1121568913,
@@ -76,7 +76,7 @@
     "tencentarc/stereocrafter": {
       "id": 908958874,
       "name": "TencentARC/StereoCrafter",
-      "stars": 529
+      "stars": 530
     },
     "visionary-laboratory/spacedg": {
       "id": 1232593062,
@@ -86,7 +86,7 @@
     "visionary-laboratory/visionary": {
       "id": 1111539438,
       "name": "Visionary-Laboratory/visionary",
-      "stars": 528
+      "stars": 529
     },
     "yifever20002/composia": {
       "id": 1180420013,
