@@ -31,7 +31,16 @@
           <!-- github-stars:summary:end -->
         </div>
         <!-- Adjust --photo-zoom: 1 = default, 1.2 = 20% larger. -->
-        <div class="profile-photo" style="--photo-zoom: 1.1;"><a href="images/niumuyao.jpg"><img alt="profile photo" src="images/niumuyao.jpg"></a></div>
+        <div class="profile-photo" role="group" aria-label="Profile photos" style="--photo-zoom: 1.1;">
+          <!-- Add another profile-photo-slide here to include another photo; each can set its own --photo-zoom. -->
+          <div class="profile-photo-slide"><img alt="Muyao Niu — photo 1" src="images/niumuyao_0.jpg"></div>
+          <div class="profile-photo-slide" style="--photo-zoom: 1;" hidden><img alt="Muyao Niu — photo 2" src="images/thumbs/niumuyao.jpg"></div>
+          <div class="profile-photo-slide" style="--photo-zoom: 1;" hidden><img alt="Muyao Niu — photo 3" src="images/thumbs/niumuyao_2.jpg"></div>
+          <div class="profile-photo-slide" style="--photo-zoom: 1;" hidden><img alt="Muyao Niu — photo 4" src="images/thumbs/niumuyao_3.jpg"></div>
+          <button class="profile-photo-arrow profile-photo-prev" type="button" aria-label="Previous photo" hidden><span aria-hidden="true">&#8249;</span></button>
+          <button class="profile-photo-arrow profile-photo-next" type="button" aria-label="Next photo" hidden><span aria-hidden="true">&#8250;</span></button>
+          <span class="profile-photo-status" role="status" aria-live="polite" aria-atomic="true"></span>
+        </div>
       </header>
 
       <aside class="availability" aria-label="Career opportunities">
@@ -42,7 +51,7 @@
         <p>My research interests include:</p>
         <ul class="research-list">
           <li>
-            <p><b>Generative Modeling and Neural Rendering:</b> I explore how generative and neural representations can can work together to create, re-enact, and edit scenes and worlds.
+            <p><b>Generative Modeling and Neural Rendering:</b> I explore how generative and neural representations can work together to create, re-enact, and edit scenes and worlds.
             </p>
             <p class="research-works"><span class="works-label">Works:</span>
               <span class="research-work"><a class="first-author" href="https://myniuuu.github.io/MOFA_Video/">MOFA-Video</a> <a class="research-stars-badge" href="https://github.com/MyNiuuu/MOFA-Video" aria-label="MOFA-Video GitHub stars"><img src="https://img.shields.io/github/stars/MyNiuuu/MOFA-Video?style=social" alt="MOFA-Video GitHub stars" height="16"></a></span>,
@@ -506,5 +515,6 @@
         <p>This website is adapted from <a href="https://jonbarron.info/">Jon Barron</a>'s template.</p>
       </footer>
     </main>
+    <script src="scripts/profile-carousel.js"></script>
   </body>
 </html>
