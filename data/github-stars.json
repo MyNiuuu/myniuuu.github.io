@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-17T05:39:37.765851+00:00",
-  "repository_count": 22,
-  "total_stars": 3237,
+  "updated_at": "2026-10-17T16:37:05.135007+00:00",
+  "repository_count": 23,
+  "total_stars": 3258,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -16,7 +16,12 @@
     "alayalab/kaininja": {
       "id": 1370844777,
       "name": "AlayaLab/KaiNinja",
-      "stars": 48
+      "stars": 49
+    },
+    "alayalab/meshaxiom": {
+      "id": 1420530892,
+      "name": "AlayaLab/MeshAxiom",
+      "stars": 20
     },
     "alayalab/pwm": {
       "id": 1358009970,
