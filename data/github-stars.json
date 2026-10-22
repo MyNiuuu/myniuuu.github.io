@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T14:32:41.894196+00:00",
+  "updated_at": "2026-10-22T06:09:53.245216+00:00",
   "repository_count": 23,
   "total_stars": 3283,
   "repositories": {
@@ -16,7 +16,7 @@
     "alayalab/kaininja": {
       "id": 1370844777,
       "name": "AlayaLab/KaiNinja",
-      "stars": 49
+      "stars": 50
     },
     "alayalab/meshaxiom": {
       "id": 1420530892,
@@ -96,7 +96,7 @@
     "yifever20002/composia": {
       "id": 1180420013,
       "name": "Yifever20002/CompoSIA",
-      "stars": 116
+      "stars": 115
     },
     "yifever20002/kfd-nerf": {
       "id": 827128310,
