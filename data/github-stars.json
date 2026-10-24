@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-23T06:05:23.725796+00:00",
+  "updated_at": "2026-10-24T05:59:02.297276+00:00",
   "repository_count": 23,
-  "total_stars": 3286,
+  "total_stars": 3289,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -21,12 +21,12 @@
     "alayalab/meshaxiom": {
       "id": 1420530892,
       "name": "AlayaLab/MeshAxiom",
-      "stars": 31
+      "stars": 32
     },
     "alayalab/pwm": {
       "id": 1358009970,
       "name": "AlayaLab/PWM",
-      "stars": 209
+      "stars": 210
     },
     "alayalab/worldsculpt": {
       "id": 1354411229,
@@ -91,7 +91,7 @@
     "visionary-laboratory/visionary": {
       "id": 1111539438,
       "name": "Visionary-Laboratory/visionary",
-      "stars": 530
+      "stars": 531
     },
     "yifever20002/composia": {
       "id": 1180420013,
