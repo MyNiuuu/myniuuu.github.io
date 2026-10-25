@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-24T05:59:02.297276+00:00",
+  "updated_at": "2026-10-25T06:14:21.954000+00:00",
   "repository_count": 23,
-  "total_stars": 3289,
+  "total_stars": 3290,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -21,7 +21,7 @@
     "alayalab/meshaxiom": {
       "id": 1420530892,
       "name": "AlayaLab/MeshAxiom",
-      "stars": 32
+      "stars": 33
     },
     "alayalab/pwm": {
       "id": 1358009970,
@@ -81,7 +81,7 @@
     "tencentarc/stereocrafter": {
       "id": 908958874,
       "name": "TencentARC/StereoCrafter",
-      "stars": 532
+      "stars": 533
     },
     "visionary-laboratory/spacedg": {
       "id": 1232593062,
@@ -91,7 +91,7 @@
     "visionary-laboratory/visionary": {
       "id": 1111539438,
       "name": "Visionary-Laboratory/visionary",
-      "stars": 531
+      "stars": 530
     },
     "yifever20002/composia": {
       "id": 1180420013,
