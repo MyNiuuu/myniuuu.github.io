@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-25T06:14:21.954000+00:00",
+  "updated_at": "2026-10-26T06:22:37.765446+00:00",
   "repository_count": 23,
-  "total_stars": 3290,
+  "total_stars": 3292,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -26,12 +26,12 @@
     "alayalab/pwm": {
       "id": 1358009970,
       "name": "AlayaLab/PWM",
-      "stars": 210
+      "stars": 211
     },
     "alayalab/worldsculpt": {
       "id": 1354411229,
       "name": "AlayaLab/WorldSculpt",
-      "stars": 350
+      "stars": 351
     },
     "joseph-lin-tech/event_attack_physics": {
       "id": 1121568913,
