@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-26T06:22:37.765446+00:00",
+  "updated_at": "2026-10-27T06:23:21.771689+00:00",
   "repository_count": 23,
-  "total_stars": 3292,
+  "total_stars": 3296,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -21,7 +21,7 @@
     "alayalab/meshaxiom": {
       "id": 1420530892,
       "name": "AlayaLab/MeshAxiom",
-      "stars": 33
+      "stars": 34
     },
     "alayalab/pwm": {
       "id": 1358009970,
@@ -31,7 +31,7 @@
     "alayalab/worldsculpt": {
       "id": 1354411229,
       "name": "AlayaLab/WorldSculpt",
-      "stars": 351
+      "stars": 354
     },
     "joseph-lin-tech/event_attack_physics": {
       "id": 1121568913,
