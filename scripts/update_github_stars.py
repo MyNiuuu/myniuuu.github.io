@@ -131,7 +131,11 @@ def render_html(page, snapshot):
         f'            <span class="github-stars-updated">Updated <time datetime="{day}">{day}</time></span>\n'
         '          </div>\n          '
     )
-    return replace_block(page, "summary", summary)
+    # The homepage may intentionally hide the summary while the repository list
+    # and saved snapshot continue to update normally.
+    if "<!-- github-stars:summary:start -->" in page:
+        return replace_block(page, "summary", summary)
+    return page
 
 
 def render_repository_list(snapshot):

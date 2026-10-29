@@ -71,6 +71,15 @@ class GitHubStarsTests(unittest.TestCase):
             self.assertEqual((root / "data/github-stars.json").read_text(), saved)
             self.assertEqual((root / "github-stars.html").read_text(), "previous repository list")
 
+    def test_hidden_summary_keeps_homepage_unchanged(self):
+        source = page("Owner/Repo").replace("<!-- github-stars:summary:start --><!-- github-stars:summary:end -->", "")
+        snapshot = stars.build_snapshot(stars.repositories_in(source), {
+            "owner/repo": {"id": 1, "name": "Owner/Repo", "stars": 7},
+        }, DATE)
+        rendered = stars.render_html(source, snapshot)
+        self.assertNotIn("github-stars:summary:start", rendered)
+        self.assertIn("class=\"paper-stars\"", rendered)
+
     def test_incomplete_snapshot_is_not_treated_as_zero(self):
         with self.assertRaises(KeyError):
             stars.build_snapshot(["owner/missing"], {}, DATE)
