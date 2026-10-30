@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T13:11:27.367789+00:00",
+  "updated_at": "2026-10-30T07:15:27.235906+00:00",
   "repository_count": 23,
   "total_stars": 3305,
   "repositories": {
@@ -16,7 +16,7 @@
     "alayalab/kaininja": {
       "id": 1370844777,
       "name": "AlayaLab/KaiNinja",
-      "stars": 51
+      "stars": 52
     },
     "alayalab/meshaxiom": {
       "id": 1420530892,
@@ -26,7 +26,7 @@
     "alayalab/pwm": {
       "id": 1358009970,
       "name": "AlayaLab/PWM",
-      "stars": 211
+      "stars": 210
     },
     "alayalab/worldsculpt": {
       "id": 1354411229,
