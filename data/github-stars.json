@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-30T07:15:27.235906+00:00",
+  "updated_at": "2026-10-31T07:04:20.617719+00:00",
   "repository_count": 23,
-  "total_stars": 3305,
+  "total_stars": 3307,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -11,7 +11,7 @@
     "alayalab/edithero": {
       "id": 1396173001,
       "name": "AlayaLab/EditHero",
-      "stars": 27
+      "stars": 28
     },
     "alayalab/kaininja": {
       "id": 1370844777,
@@ -91,7 +91,7 @@
     "visionary-laboratory/visionary": {
       "id": 1111539438,
       "name": "Visionary-Laboratory/visionary",
-      "stars": 530
+      "stars": 531
     },
     "yifever20002/composia": {
       "id": 1180420013,
