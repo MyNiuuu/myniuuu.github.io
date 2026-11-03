@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-02T07:45:14.252722+00:00",
+  "updated_at": "2026-11-03T07:58:59.462584+00:00",
   "repository_count": 23,
-  "total_stars": 3311,
+  "total_stars": 3312,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -81,7 +81,7 @@
     "tencentarc/stereocrafter": {
       "id": 908958874,
       "name": "TencentARC/StereoCrafter",
-      "stars": 534
+      "stars": 535
     },
     "visionary-laboratory/spacedg": {
       "id": 1232593062,
