@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-03T07:58:59.462584+00:00",
+  "updated_at": "2026-11-04T07:33:22.105215+00:00",
   "repository_count": 23,
-  "total_stars": 3312,
+  "total_stars": 3317,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -26,12 +26,12 @@
     "alayalab/pwm": {
       "id": 1358009970,
       "name": "AlayaLab/PWM",
-      "stars": 210
+      "stars": 211
     },
     "alayalab/worldsculpt": {
       "id": 1354411229,
       "name": "AlayaLab/WorldSculpt",
-      "stars": 359
+      "stars": 360
     },
     "joseph-lin-tech/event_attack_physics": {
       "id": 1121568913,
@@ -51,7 +51,7 @@
     "myniuuu/anicrafter": {
       "id": 990030926,
       "name": "MyNiuuu/AniCrafter",
-      "stars": 144
+      "stars": 145
     },
     "myniuuu/mad-avatar": {
       "id": 892535497,
@@ -81,7 +81,7 @@
     "tencentarc/stereocrafter": {
       "id": 908958874,
       "name": "TencentARC/StereoCrafter",
-      "stars": 535
+      "stars": 537
     },
     "visionary-laboratory/spacedg": {
       "id": 1232593062,
