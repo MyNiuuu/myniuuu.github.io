@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-05T07:57:35.540043+00:00",
+  "updated_at": "2026-11-06T07:59:39.444052+00:00",
   "repository_count": 23,
-  "total_stars": 3322,
+  "total_stars": 3323,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -91,7 +91,7 @@
     "visionary-laboratory/visionary": {
       "id": 1111539438,
       "name": "Visionary-Laboratory/visionary",
-      "stars": 532
+      "stars": 533
     },
     "yifever20002/composia": {
       "id": 1180420013,
