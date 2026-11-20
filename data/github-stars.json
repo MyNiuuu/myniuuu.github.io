@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-19T08:52:25.565354+00:00",
+  "updated_at": "2026-11-20T08:39:41.770378+00:00",
   "repository_count": 23,
-  "total_stars": 3335,
+  "total_stars": 3334,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -26,7 +26,7 @@
     "alayalab/pwm": {
       "id": 1358009970,
       "name": "AlayaLab/PWM",
-      "stars": 213
+      "stars": 212
     },
     "alayalab/worldsculpt": {
       "id": 1354411229,
