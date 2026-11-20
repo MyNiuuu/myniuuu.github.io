@@ -433,6 +433,9 @@ ul.news li {
 }
 .paper-summary { margin: 8px 0 0; font-size: 15px; line-height: 1.6; }
 .full-publications .paper { padding: 17px 0; }
+.pubtoggle { margin: 0; font-size: 15px; }
+.pubtoggle a { color: var(--ink-soft); }
+.pubtoggle a:hover, .pubtoggle a:focus { color: var(--link-hover); }
 .full-publications .paper-thumbnail img { height: 115px; }
 
 /* ---------- closing sections ---------- */

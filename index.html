@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="images/cow.png">
     <meta name="author" content="Muyao Niu">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css?v=20261018-photos-2">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css?v=20261120-pubtoggle">
 
   </head>
 
@@ -38,7 +38,7 @@
       </header>
 
       <aside class="availability" aria-label="Career opportunities">
-        <p>I expect to graduate from UTokyo in September 2027 and am looking for <strong>full-time opportunities starting in fall 2027</strong>. Feel free to reach out via email or WeChat! ☕️</p>
+        <p>I expect to graduate from UTokyo in September 2027 and am looking for both <strong>daily intern</strong> and <strong>full-time opportunities</strong>. Feel free to reach out via email or WeChat! ☕️</p>
       </aside>
 
       <section class="research" aria-label="Research interests">
@@ -211,6 +211,22 @@
 
       <section class="section full-publications" aria-labelledby="publications">
         <h2 id="publications">Full Publication List 📚</h2>
+        <p class="pubtoggle" hidden><a href="#publications" id="publications-more" aria-controls="publications-list" aria-expanded="false">Show all publications chronologically</a></p>
+        <div id="publications-list">
+
+        <article class="paper" data-github-repo="AlayaLab/sprint3d">
+          <div class="paper-thumbnail"><img loading="lazy" alt="Sprint3D: Accelerating End-to-End 3D Asset Generation through Pipeline Optimization — overview" src="images/thumbs/sprint3d.jpg"></div>
+          <div class="paper-content">
+            <h3 class="papertitle">Sprint3D: Accelerating End-to-End 3D Asset Generation through Pipeline Optimization</h3>
+            <p class="paper-authors">Sho Kuno, Ruihan Yu, Yonghao Yu, Guixu Lin, Lian Fu, <strong>Muyao Niu</strong>, Yu-Ju Tsai, Zheng-Hui Huang, Yi-Chuan Huang, Siqi Yang, Fengbo Lan, Erwin Wu, Kaipeng Zhang, Zhixiang Wang</p>
+            <p class="paper-venue"><em>Technical Report</em>, 2026</p>
+            <p class="paper-links">
+              <a href="https://alaya-lab.github.io/sprint3d/">project page</a> /
+              <a href="https://arxiv.org/abs/2611.16701">paper</a> /
+              <a href="https://github.com/AlayaLab/sprint3d">code</a> <!-- github-stars:badge:start --><a class="paper-stars" href="https://github.com/AlayaLab/sprint3d" aria-label="AlayaLab/sprint3d GitHub stars"><img loading="lazy" src="https://img.shields.io/github/stars/AlayaLab/sprint3d?style=social" alt="AlayaLab/sprint3d GitHub stars" height="16"></a><!-- github-stars:badge:end --></p>
+            <p class="paper-summary">Sprint3D accelerates end-to-end 3D asset generation through pipeline optimization, going from one image to a textured 3D asset in 4.05 s, 33× faster than the released Pixal3D.</p>
+          </div>
+        </article>
 
         <article class="paper" data-github-repo="AlayaLab/MeshAxiom">
           <div class="paper-thumbnail"><img loading="lazy" alt="MeshAxiom — overview" src="images/meshaxiom.jpg"></div>
@@ -493,6 +509,33 @@
             <p class="paper-summary">We propose a multi-scale Transformation Region Enhancement Network (TRE-Net) to enhance the learning on geometric transformation regions.</p>
           </div>
         </article>
+        </div>
+        <script>
+          (function () {
+            var list = document.getElementById('publications-list');
+            var link = document.getElementById('publications-more');
+            if (!list || !link) return;
+            var open = false;
+            function render() {
+              list.hidden = !open;
+              link.textContent = open ? 'Collapse' : 'Show all publications chronologically';
+              link.setAttribute('aria-expanded', String(open));
+            }
+            link.addEventListener('click', function (e) {
+              e.preventDefault();
+              open = !open;
+              render();
+            });
+            // The nav link to this section should reveal the list, not land on an empty heading.
+            function openFromHash() {
+              if (location.hash === '#publications' && !open) { open = true; render(); }
+            }
+            window.addEventListener('hashchange', openFromHash);
+            link.parentNode.hidden = false;
+            render();
+            openFromHash();
+          })();
+        </script>
       </section>
 
       <section class="section awards" aria-labelledby="awards">
@@ -501,7 +544,7 @@
           BOOST NAIS Special Research Scholarship (3,900,000 JPY / year), The University of Tokyo, <em>2024.10 - 2027.09</em> <br>
           WING-CFS Special Research Scholarship (2,160,000 JPY / year), The University of Tokyo, <em>2023.04 - 2024.09</em> <br>
           CVPR 2025 Outstanding Reviewer <br>
-          Reviewer: CVPR, ICCV, ECCV, NeurIPS, ICML, ICLR, ACM MM, AAAI, BMVC, TMLR <br>
+          Reviewer: CVPR, ICLR, ICCV, ECCV, NeurIPS, ICML, ACM MM, AAAI, BMVC, TMLR <br>
         </p>
       </section>
 

@@ -20,6 +20,7 @@ REPO_NAME = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")
 JST = timezone(timedelta(hours=9))
 WORK_LABELS = {
     "alayalab/pwm": "Programmable-WM",
+    "alayalab/sprint3d": "Sprint3D",
     "visionary-laboratory/visionary": "Visionary",
     "yifever20002/r3avatars": "R3-Avatar",
     "joseph-lin-tech/event_attack_physics": "Event-Attack",
