@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-21T08:20:26.365662+00:00",
+  "updated_at": "2026-11-22T08:05:53.016726+00:00",
   "repository_count": 24,
-  "total_stars": 3357,
+  "total_stars": 3356,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
       "name": "AILab-CVC/CV-VAE",
-      "stars": 285
+      "stars": 284
     },
     "alayalab/edithero": {
       "id": 1396173001,
