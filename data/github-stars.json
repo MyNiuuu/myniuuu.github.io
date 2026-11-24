@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-23T09:12:10.581448+00:00",
+  "updated_at": "2026-11-24T11:04:14.763517+00:00",
   "repository_count": 24,
-  "total_stars": 3360,
+  "total_stars": 3362,
   "repositories": {
     "ailab-cvc/cv-vae": {
       "id": 807517499,
@@ -26,7 +26,7 @@
     "alayalab/pwm": {
       "id": 1358009970,
       "name": "AlayaLab/PWM",
-      "stars": 212
+      "stars": 213
     },
     "alayalab/sprint3d": {
       "id": 1455214656,
@@ -36,7 +36,7 @@
     "alayalab/worldsculpt": {
       "id": 1354411229,
       "name": "AlayaLab/WorldSculpt",
-      "stars": 367
+      "stars": 369
     },
     "joseph-lin-tech/event_attack_physics": {
       "id": 1121568913,
@@ -76,7 +76,7 @@
     "myniuuu/rs-nerf": {
       "id": 828503660,
       "name": "MyNiuuu/RS-NeRF",
-      "stars": 18
+      "stars": 17
     },
     "myniuuu/vcsd": {
       "id": 617284416,
